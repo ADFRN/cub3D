@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/05 14:42:01 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/05 15:00:41 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 typedef struct s_player
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
 }	t_player;
 
 typedef struct s_game
