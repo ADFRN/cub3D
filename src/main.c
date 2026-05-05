@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:19 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/05 14:04:37 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:45:35 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
+#include "cub3D.h"
+
+static void	open_map(t_game *game, char *map)
 {
-	return (0);
+	
+}
+
+int	main(int ac, char **av)
+{
+	t_game	game;
+
+	if (ac < 2)
+		return (printf("2 arg required"), EXIT_FAILURE);
+	
+	open_map(&game);
+
+	return (EXIT_SUCCESS);
 }
