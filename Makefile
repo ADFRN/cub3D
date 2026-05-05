@@ -6,11 +6,20 @@
 #    By: afournie <afournie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-#    Updated: 2026/05/05 14:29:08 by afournie         ###   ########.fr        #
+#    Updated: 2026/05/05 14:43:51 by afournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 MAKEFLAGS     += -s
+
+RED     = \033[1;31m
+GREEN   = \033[1;32m
+YELLOW  = \033[1;33m
+BLUE    = \033[1;34m
+MAGENTA = \033[1;35m
+CYAN    = \033[1;36m
+WHITE   = \033[1;37m
+RESET   = \033[0m
 
 NAME          = cub3D
 CC            = cc
@@ -33,30 +42,32 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) -L$(MINILIBX_DIR) -lXext -lX11 -lm -o $(NAME)
-	@echo "$(NAME) generated"
+	@printf "$(GREEN)$(NAME) est compilé avec succès !           $(RESET)\n"
+
 
 $(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR) > /dev/null 2>&1
-	@echo "libft generated"
+	@$(MAKE) -C $(LIBFT_DIR)
 
 $(MINILIBX):
 	@$(MAKE) -C $(MINILIBX_DIR) > /dev/null 2>&1
-	@echo "minilibx generated"
+	@printf "$(GREEN)Minilibx compilé avec succès !           $(RESET)\n"
+
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
-	@$(MAKE) -C $(LIBFT_DIR) clean > /dev/null 2>&1
+	@$(MAKE) -C $(LIBFT_DIR) clean
 	@$(MAKE) -C $(MINILIBX_DIR) clean > /dev/null 2>&1
-	@rm -f $(OBJS)
-	@echo "Objects cleaned"
+	@rm -rf $(OBJ_DIR)
+	@printf "$(RED)Objets nettoyés.$(RESET)\n"
+
 
 fclean: clean
-	@$(MAKE) -C $(LIBFT_DIR) fclean > /dev/null 2>&1
+	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@rm -f $(NAME)
-	@echo "$(NAME) removed"
+	@printf "$(RED)$(NAME) supprimé.$(RESET)\n"
 
 re: fclean all
 
