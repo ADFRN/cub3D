@@ -6,25 +6,20 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:19 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/05 14:45:35 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/06 14:16:21 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	open_map(t_game *game, char *map)
-{
-	
-}
-
 int	main(int ac, char **av)
 {
-	t_game	game;
+	void	*mlx;
+	void	*mlx_win;
 
-	if (ac < 2)
-		return (printf("2 arg required"), EXIT_FAILURE);
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Cub3d");
+	mlx_loop(mlx);
 	
-	open_map(&game);
-
 	return (EXIT_SUCCESS);
 }
