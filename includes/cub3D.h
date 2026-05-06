@@ -6,16 +6,20 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/05 14:42:01 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/06 18:12:49 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <math.h>
 # include "libft.h"
 # include "mlx.h"
-# include "math.h"
 
 typedef struct s_player
 {
@@ -24,13 +28,6 @@ typedef struct s_player
 	double	dirX;
 	double	dirY;
 }	t_player;
-
-typedef struct s_game
-{
-	char	**map;
-	int		screen_width;
-	int		screen_height;
-}	t_game;
 
 # define WEST_SPAWN 'W'
 # define EST_SPAWN 'E'
