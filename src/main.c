@@ -6,83 +6,144 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:19 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/06 18:31:18 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/10 20:05:38 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-typedef struct s_data
+static void	fill_cell(t_game *game, int x, int y, int color)
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
+	int	cell_width;
+	int	cell_height;
+	int	i;
+	int	j;
 
-typedef struct s_game
-{
-	void	*mlx;
-	void	*win;
-	t_data	data;
-}	t_game;
-
-void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	cell_width = WIN_WIDTH / game->map.map_width;
+	cell_height = WIN_HEIGHT / game->map.map_height;
+	i = -1;
+	while (++i < cell_height)
+	{
+		j = -1;
+		while (++j < cell_width)
+		{
+			if (i == 0 || j == 0)
+				ft_mlx_pixel_put(
+					&game->data, 
+					(x * cell_width + j), (y * cell_height + i), 0x00000000);
+			else
+				ft_mlx_pixel_put(
+					&game->data, 
+					(x * cell_width + j), (y * cell_height + i), color);
+		}
+	}
 }
 
-int	player_action(int key, void *param)
+static void	fill_image(t_game *game, int ground_color, int wall_color)
 {
-	(void)param;
-	printf("key = %d\n", key);
-	return (1);
+	int	x;
+	int	y;
+
+	y = 0;
+	while (game->map.map[y])
+	{
+		x = 0;
+		while (game->map.map[y][x])
+		{
+			if (game->map.map[y][x] == '1')
+				fill_cell(game, x, y, wall_color);
+			else if (game->map.map[y][x] == '0')
+				fill_cell(game, x, y, ground_color);
+			else
+				fill_cell(game, x, y, 0x00000000);
+			x++;
+		}
+		y++;
+	}
 }
 
-int	mouse_click(int button, int x, int y, void *param)
+static void	draw_circle(t_game *game, int cx, int cy, int radius, int color)
 {
-	(void)param;
-	printf("button = %d\nx = %d | y = %d\n", button, x, y);
-	return (0);
+	int	x;
+	int	y;
+
+	y = -radius;
+	while (y <= radius)
+	{
+		x = -radius;
+		while (x <= radius)
+		{
+			if (x * x + y * y <= radius * radius)
+				ft_mlx_pixel_put(&game->data, cx + x, cy + y, color);
+			x++;
+		}
+		y++;
+	}
 }
 
-int	mouse_movement(int x, int y, void *param)
+static void	update_player_position(t_game *game)
 {
-	(void)param;
-	printf("mouse_coordonnee :\nx = %d | y = %d\n", x, y);
-	return (0);
+	if (game->keys.w)
+		game->player.posY -= 2;
+	if (game->keys.s)
+		game->player.posY += 2;
+	if (game->keys.a)
+		game->player.posX -= 2;
+	if (game->keys.d)
+		game->player.posX += 2;
 }
 
-int	clean_exit(t_game *game)
+static long	get_time_us(void)
 {
-	mlx_destroy_image(game->mlx, game->data.img);
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
-	printf("exit\n");
-	exit(EXIT_SUCCESS);
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000000 + tv.tv_usec);
+}
+
+static int	render_next_frame(t_game *game)
+{
+	static long	last_frame = 0;
+	long		now;
+
+	now = get_time_us();
+	if (now - last_frame < FRAME_TIME)
+		return (0);
+	last_frame = now;
+
+	update_player_position(game);
+	if (game->data.img)
+	{
+		mlx_destroy_image(game->mlx, game->data.img);
+		game->data = t_data_new(game->mlx);
+	}
+	fill_image(game, 0x00FFFFFF, 0x0082C8E5);
+	draw_circle(
+		game, 
+		game->player.posX, 
+		game->player.posY, 
+		game->player.radius, 
+		0x00FF0000);
+	mlx_put_image_to_window(game->mlx, game->win , game->data.img, 0, 0);
 	return (0);
 }
 
 int	main(void)
 {
 	t_game	game;
+	
+	char	**map = DEBUG_map();
+	if (!map)
+		return (EXIT_FAILURE);
 
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 500, 500, "Cub3D");
-	game.data.img = mlx_new_image(game.mlx, 500, 500);
-	game.data.addr = mlx_get_data_addr(game.data.img, &game.data.bits_per_pixel,
-		&game.data.line_length, &game.data.endian);
-	ft_mlx_pixel_put(&game.data, 250, 250, 0x00FF0000);
-	mlx_put_image_to_window(game.mlx, game.win , game.data.img, 0, 0);
+	game = t_game_new(map);
+
 	mlx_hook(game.win, 17, 0, (void *)clean_exit, &game);
-	mlx_hook(game.win, 6, (1L<<6), (void *)mouse_movement, &game);
-	mlx_key_hook(game.win, player_action, NULL);
+	// mlx_hook(game.win, 6, (1L<<6), (void *)mouse_movement, &game);
+	mlx_hook(game.win, 2, (1L<<0), (void *)key_press, &game);
+	mlx_hook(game.win, 3, (1L<<1), (void *)key_release, &game);
 	mlx_mouse_hook(game.win, mouse_click, &game);
+	mlx_loop_hook(game.mlx, (void *)render_next_frame, &game);
 	mlx_loop(game.mlx);
 	return (EXIT_SUCCESS);
 }

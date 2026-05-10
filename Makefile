@@ -6,7 +6,7 @@
 #    By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-#    Updated: 2026/05/06 18:27:12 by ttiprez          ###   ########.fr        #
+#    Updated: 2026/05/10 19:57:44 by ttiprez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ RESET   = \033[0m
 NAME          = cub3D
 CC            = cc
 CFLAGS        = -Wall -Wextra -Werror -g
-INC           = -I includes -I $(LIBFT_DIR) -I $(MINILIBX_DIR)
+INC           = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR)
 
 INC_DIR       = includes
 MINILIBX_DIR  = minilibx
@@ -36,7 +36,17 @@ LIBFT         = $(LIBFT_DIR)/libft.a
 MINILIBX      = $(MINILIBX_DIR)/libmlx_Linux.a
 OBJS          = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-SRCS          = $(SRC_DIR)/main.c
+SRCS          =	$(SRC_DIR)/main.c								\
+				$(SRC_DIR)/DEBUG.c								\
+				$(SRC_DIR)/player_interaction/mouse_action.c	\
+				$(SRC_DIR)/player_interaction/player_action.c	\
+				$(SRC_DIR)/structures/t_data.c					\
+				$(SRC_DIR)/structures/t_game.c					\
+				$(SRC_DIR)/structures/t_keys.c					\
+				$(SRC_DIR)/structures/t_map.c					\
+				$(SRC_DIR)/structures/t_player.c				\
+				$(SRC_DIR)/utils/mlx_utils.c					\
+				$(SRC_DIR)/utils/utils.c						\
 
 all: $(NAME)
 
@@ -54,7 +64,7 @@ $(MINILIBX):
 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
