@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:19 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/10 20:05:38 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/10 20:49:56 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,6 @@ static int	render_next_frame(t_game *game)
 	last_frame = now;
 
 	update_player_position(game);
-	if (game->data.img)
-	{
-		mlx_destroy_image(game->mlx, game->data.img);
-		game->data = t_data_new(game->mlx);
-	}
 	fill_image(game, 0x00FFFFFF, 0x0082C8E5);
 	draw_circle(
 		game, 
