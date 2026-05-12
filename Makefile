@@ -6,7 +6,7 @@
 #    By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-#    Updated: 2026/05/10 19:57:44 by ttiprez          ###   ########.fr        #
+#    Updated: 2026/05/12 15:29:44 by ttiprez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,11 @@ OBJS          = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 SRCS          =	$(SRC_DIR)/main.c								\
 				$(SRC_DIR)/DEBUG.c								\
-				$(SRC_DIR)/player_interaction/mouse_action.c	\
-				$(SRC_DIR)/player_interaction/player_action.c	\
+				$(SRC_DIR)/player/mouse_action.c				\
+				$(SRC_DIR)/player/player_action.c				\
+				$(SRC_DIR)/player/player.c						\
+				$(SRC_DIR)/render/draw.c						\
+				$(SRC_DIR)/render/render.c						\
 				$(SRC_DIR)/structures/t_data.c					\
 				$(SRC_DIR)/structures/t_game.c					\
 				$(SRC_DIR)/structures/t_keys.c					\

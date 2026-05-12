@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:43 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/10 19:56:21 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/12 15:53:40 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,14 @@ t_player	t_player_new()
 	t_player player;
 
 	player.radius = 10;
-	player.dirX = 0;
-	player.dirY = 0;
 	player.posX = 50;
 	player.posY = 50;
+	player.dirX = -1;
+	player.dirY = 0;
+	player.planeX = 0;
+	player.planeY = -0.66;
+	player.rayDirX = 0;
+	player.rayDirY = 0;
+	player.cameraX = 0;
 	return (player);
 }

@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:52:47 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/10 19:59:20 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/12 15:44:04 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ t_keys	t_keys_new()
 {
 	t_keys keys;
 
-	keys.w = 0;
-	keys.a = 0;
-	keys.s = 0;
-	keys.d = 0;
+	keys.w = false;
+	keys.a = false;
+	keys.s = false;
+	keys.d = false;
+	keys.left = false;
+	keys.right = false;
 	return (keys);
 }

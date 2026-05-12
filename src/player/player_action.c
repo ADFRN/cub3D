@@ -24,6 +24,10 @@ int	key_press(int key, t_game *game)
 		game->keys.a = true;
 	else if (key == D_KEY)
 		game->keys.d = true;
+	else if (key == LEFT_KEY)
+		game->keys.left = true;
+	else if (key == RIGHT_KEY)
+		game->keys.right = true;
 	return (1);
 }
 
@@ -37,5 +41,9 @@ int	key_release(int key, t_game *game)
 		game->keys.a = false;
 	else if (key == D_KEY)
 		game->keys.d = false;
+	else if (key == LEFT_KEY)
+		game->keys.left = false;
+	else if (key == RIGHT_KEY)
+		game->keys.right = false;
 	return (1);
 }

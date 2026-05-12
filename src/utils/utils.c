@@ -27,3 +27,11 @@ int	clean_exit(t_game *game)
 	exit(EXIT_SUCCESS);
 	return (0);
 }
+
+long	get_time_us(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000000 + tv.tv_usec);
+}
