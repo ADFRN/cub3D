@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/10 20:02:32 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/12 14:54:23 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 # include <fcntl.h>
 # include <math.h>
 # include <sys/time.h>
@@ -57,10 +58,10 @@
 /********************************/
 typedef struct s_keys
 {
-	int	w;
-	int	s;
-	int	a;
-	int	d;
+	bool	w;
+	bool	s;
+	bool	a;
+	bool	d;
 }	t_keys;
 
 typedef struct s_player

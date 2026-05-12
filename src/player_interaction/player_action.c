@@ -17,25 +17,25 @@ int	key_press(int key, t_game *game)
 	if (key == ESC_KEY)
 		clean_exit(game);
 	else if (key == W_KEY)
-		game->keys.w = 1;
+		game->keys.w = true;
 	else if (key == S_KEY)
-		game->keys.s = 1;
+		game->keys.s = true;
 	else if (key == A_KEY)
-		game->keys.a = 1;
+		game->keys.a = true;
 	else if (key == D_KEY)
-		game->keys.d = 1;
+		game->keys.d = true;
 	return (1);
 }
 
 int	key_release(int key, t_game *game)
 {
 	if (key == W_KEY)
-		game->keys.w = 0;
+		game->keys.w = false;
 	else if (key == S_KEY)
-		game->keys.s = 0;
+		game->keys.s = false;
 	else if (key == A_KEY)
-		game->keys.a = 0;
+		game->keys.a = false;
 	else if (key == D_KEY)
-		game->keys.d = 0;
+		game->keys.d = false;
 	return (1);
 }
