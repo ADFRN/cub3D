@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/12 15:59:09 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/12 22:42:37 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@
 /*			CONSTANTES			*/
 /********************************/
 //	GAME
-# define WIN_HEIGHT		500
-# define WIN_WIDTH		500
+# define WIN_HEIGHT		900
+# define WIN_WIDTH		900
 # define FPS			60
 # define FRAME_TIME		(1000000 / FPS)	// En microsecondes
 # define ROT_SPEED		0.1
+# define FOV			66
+# define RENDER_DIST	1000
 
 //	MAP
 # define WEST_SPAWN		'W'
@@ -74,13 +76,13 @@ typedef struct s_player
 	int		radius;
 	double	posX;
 	double	posY;
-	double	dirX;	// -1 N | 1 S | 0
-	double	dirY;	// -1 W | 1 E | 0
-	double	planeX;	// -0.66 W | 0.66 E | 0
-	double	planeY;	// -0.66 N | 0.66 S | 0
+	double	dirX;		// -1 N | 1 S | 0
+	double	dirY;		// -1 W | 1 E | 0
+	double	planeX;		// -0.66 W | 0.66 E | 0
+	double	planeY;		// -0.66 N | 0.66 S | 0
 	double	rayDirX;
 	double	rayDirY;
-	double	cameraX;	// ???
+	double	cameraX;	// Position camera
 }	t_player;
 
 typedef struct s_data
@@ -130,7 +132,6 @@ void		update_player_position(t_game *game);
 //		draw.c
 void		fill_image(t_game *game, int ground_color, int wall_color);
 void		draw_circle(t_game *game, int cx, int cy, int radius, int color);
-void		draw_direction_line(t_game *game);
 void		draw_raycast(t_game *game);
 //		render.c
 int			render_next_frame(t_game *game);
