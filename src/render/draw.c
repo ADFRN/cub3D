@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:27:15 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/12 22:43:02 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/14 11:56:12 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	fill_cell(t_game *game, int x, int y, int color)
 	int	i;
 	int	j;
 
-	cell_width = WIN_WIDTH / game->map.map_width;
-	cell_height = WIN_HEIGHT / game->map.map_height;
+	cell_width = WIN_WIDTH / game->map.width;
+	cell_height = WIN_HEIGHT / game->map.height;
 	i = -1;
 	while (++i < cell_height)
 	{
@@ -83,38 +83,36 @@ void	draw_circle(t_game *game, int cx, int cy, int radius, int color)
 
 static void draw_ray(t_game *game, double x, double y, double dirX, double dirY)
 {
-    int i;
-    int px;
-    int py;
-    int len;
+	int i;
+	int px;
+	int py;
 
-    i = 0;
-    len = RENDER_DIST;
-    while (i < len)
-    {
-        px = x + (int)(dirX * i);
-        py = y + (int)(dirY * i);
-        if (px < 0 || px >= WIN_WIDTH || py < 0 || py >= WIN_HEIGHT)
-            break;
-        ft_mlx_pixel_put(&game->data, px, py, 0x00FF0000);
-        i++;
-    }
+	i = 0;
+	while (i < RENDER_DIST)
+	{
+		px = x + (int)(dirX * i);
+		py = y + (int)(dirY * i);
+		if (px < 0 || px >= WIN_WIDTH || py < 0 || py >= WIN_HEIGHT)
+			break ;
+		ft_mlx_pixel_put(&game->data, px, py, 0x00FF0000);
+		i++;
+	}
 }
 
 void	draw_raycast(t_game *game)
 {
-	double cameraX;
-	double rayDirX;
-	double rayDirY;
+	t_player	*player;
+
+	player = &game->player;
 	for (int x = 0; x < WIN_WIDTH; x += WIN_WIDTH / 30	)
 	{
-		cameraX = 2.0 * x / (double)WIN_WIDTH - 1.0;
-		rayDirX = game->player.dirX + game->player.planeX * cameraX;
-		rayDirY = game->player.dirY + game->player.planeY * cameraX;
+		player->cameraX = 2.0 * x / (double)WIN_WIDTH - 1.0;
+		player->rayDirX = player->dirX + player->planeX * player->cameraX;
+		player->rayDirY = player->dirY + player->planeY * player->cameraX;
 		draw_ray(game,
-			game->player.posX,
-			game->player.posY,
-			rayDirX,
-			rayDirY);
+			player->posX,
+			player->posY,
+			player->rayDirX,
+			player->rayDirY);
 	}
 }

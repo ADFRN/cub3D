@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/12 22:42:37 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/14 12:54:54 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,18 @@
 /********************************/
 /*			CONSTANTES			*/
 /********************************/
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
 //	GAME
 # define WIN_HEIGHT		900
-# define WIN_WIDTH		900
+# define WIN_WIDTH		1512
 # define FPS			60
 # define FRAME_TIME		(1000000 / FPS)	// En microsecondes
-# define ROT_SPEED		0.1
-# define FOV			66
-# define RENDER_DIST	1000
+# define ROT_SPEED		4.0
+# define MOV_SPEED		200.0
+# define FOV			100
+# define RENDER_DIST	300
 
 //	MAP
 # define WEST_SPAWN		'W'
@@ -74,6 +78,8 @@ typedef struct s_keys
 typedef struct s_player
 {
 	int		radius;
+	double	mov_speed;
+	double	rot_speed;
 	double	posX;
 	double	posY;
 	double	dirX;		// -1 N | 1 S | 0
@@ -97,14 +103,34 @@ typedef struct s_data
 typedef struct s_map
 {
 	char	**map;
-	int		map_width;
-	int		map_height;
+	int		width;
+	int		height;
 }	t_map;
+
+typedef struct s_ray
+{
+	double	cameraX;
+	double	dirX;
+	double	dirY;
+	double	posX;
+	double	posY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	sideDistX;
+	double	sideDistY;
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+}	t_ray;
 
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	long		last_frame;
 	t_map		map;
 	t_keys		keys;
 	t_player	player;
@@ -126,7 +152,11 @@ int			key_release(int key, t_game *game);
 int			mouse_click(int button, int x, int y, void *param);
 int			mouse_movement(int x, int y, void *param);
 //		player.c
-void		update_player_position(t_game *game);
+void		update_player(t_game *game);
+
+//	raycast
+//		raycaster.c
+void		raycast(t_game *game);
 
 //	render.c
 //		draw.c
@@ -147,6 +177,8 @@ t_keys		t_keys_new();
 t_map		t_map_new(char **map);
 //		t_player.c
 t_player	t_player_new();
+//		t_ray.c
+void		t_ray_init(t_game *game, t_ray *ray, int x);
 
 //	utils.c
 //		mlx_utils.c

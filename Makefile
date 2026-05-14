@@ -6,7 +6,7 @@
 #    By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-#    Updated: 2026/05/12 15:29:44 by ttiprez          ###   ########.fr        #
+#    Updated: 2026/05/14 12:45:16 by ttiprez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS          =	$(SRC_DIR)/main.c								\
 				$(SRC_DIR)/player/mouse_action.c				\
 				$(SRC_DIR)/player/player_action.c				\
 				$(SRC_DIR)/player/player.c						\
+				$(SRC_DIR)/raycast/raycaster.c					\
 				$(SRC_DIR)/render/draw.c						\
 				$(SRC_DIR)/render/render.c						\
 				$(SRC_DIR)/structures/t_data.c					\
@@ -48,6 +49,7 @@ SRCS          =	$(SRC_DIR)/main.c								\
 				$(SRC_DIR)/structures/t_keys.c					\
 				$(SRC_DIR)/structures/t_map.c					\
 				$(SRC_DIR)/structures/t_player.c				\
+				$(SRC_DIR)/structures/t_ray.c					\
 				$(SRC_DIR)/utils/mlx_utils.c					\
 				$(SRC_DIR)/utils/utils.c						\
 
@@ -66,7 +68,7 @@ $(MINILIBX):
 	@printf "$(GREEN)Minilibx compilé avec succès !           $(RESET)\n"
 
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR)/cub3D.h
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
@@ -75,7 +77,6 @@ clean:
 	@$(MAKE) -C $(MINILIBX_DIR) clean > /dev/null 2>&1
 	@rm -rf $(OBJ_DIR)
 	@printf "$(RED)Objets nettoyés.$(RESET)\n"
-
 
 fclean: clean
 	@$(MAKE) -C $(LIBFT_DIR) fclean
