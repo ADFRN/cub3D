@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+         #
+#    By: afournie <afournie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-#    Updated: 2026/05/14 12:45:16 by ttiprez          ###   ########.fr        #
+#    Updated: 2026/05/15 15:02:16 by afournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,9 @@ OBJS          = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 SRCS          =	$(SRC_DIR)/main.c								\
 				$(SRC_DIR)/DEBUG.c								\
+				$(SRC_DIR)/parsing/textures.c					\
+				$(SRC_DIR)/parsing/colors.c						\
+				$(SRC_DIR)/parsing/parsing.c					\
 				$(SRC_DIR)/player/mouse_action.c				\
 				$(SRC_DIR)/player/player_action.c				\
 				$(SRC_DIR)/player/player.c						\

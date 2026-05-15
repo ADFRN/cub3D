@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/14 12:54:54 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/15 15:05:10 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,14 @@ typedef struct s_map
 	char	**map;
 	int		width;
 	int		height;
-}	t_map;
+
+	char	*no_txt;
+	char	*so_txt;
+	char	*we_txt;
+	char	*ea_txt;
+	int		floor_color;
+	int		ceiling_color;
+}			t_map;
 
 typedef struct s_ray
 {
@@ -144,6 +151,11 @@ typedef struct s_game
 //	!!! DEBUG !!!
 char		**DEBUG_map();
 
+// Parsing
+void	get_map_info(t_map *map, char *map_path);
+bool	get_textures(t_map *map, char *line);
+bool	get_colors(t_map *map, char *line);
+
 //	player.c
 //		player_action.c
 int			key_press(int key, t_game *game);
@@ -170,7 +182,7 @@ int			render_next_frame(t_game *game);
 //		t_data.c
 t_data		t_data_new(void	*mlx_ptr);
 //		t_game.c
-t_game		t_game_new(char **map);
+t_game	t_game_new(char *map_path);
 //		t_keys.c
 t_keys		t_keys_new();
 //		t_map.c
