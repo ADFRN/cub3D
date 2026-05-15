@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:27:15 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/14 11:56:12 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/15 17:24:32 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,32 @@
 
 static void	fill_cell(t_game *game, int x, int y, int color)
 {
-	int	cell_width;
-	int	cell_height;
+	int	cell_size;
 	int	i;
 	int	j;
 
-	cell_width = WIN_WIDTH / game->map.width;
-	cell_height = WIN_HEIGHT / game->map.height;
+	cell_size = ATH_SIZE / game->map.width;
+	if (ATH_SIZE / game->map.width < ATH_SIZE / game->map.height)
+		cell_size = ATH_SIZE / game->map.height;
 	i = -1;
-	while (++i < cell_height)
+	while (++i < cell_size)
 	{
 		j = -1;
-		while (++j < cell_width)
+		while (++j < cell_size)
 		{
 			if (i == 0 || j == 0)
 				ft_mlx_pixel_put(
 					&game->data,
-					(x * cell_width + j), (y * cell_height + i), 0x00000000);
+					(x * cell_size + j), (y * cell_size + i), 0x00000000);
 			else
 				ft_mlx_pixel_put(
 					&game->data,
-					(x * cell_width + j), (y * cell_height + i), color);
+					(x * cell_size + j), (y * cell_size + i), color);
 		}
 	}
 }
 
-void	fill_image(t_game *game, int ground_color, int wall_color)
+void	fill_minimap(t_game *game, int ground_color, int wall_color)
 {
 	int	x;
 	int	y;
@@ -55,7 +55,7 @@ void	fill_image(t_game *game, int ground_color, int wall_color)
 			else if (game->map.map[y][x] == '0')
 				fill_cell(game, x, y, ground_color);
 			else
-				fill_cell(game, x, y, 0x00000000);
+				fill_cell(game, x, y, BLACK);
 			x++;
 		}
 		y++;
@@ -94,7 +94,7 @@ static void draw_ray(t_game *game, double x, double y, double dirX, double dirY)
 		py = y + (int)(dirY * i);
 		if (px < 0 || px >= WIN_WIDTH || py < 0 || py >= WIN_HEIGHT)
 			break ;
-		ft_mlx_pixel_put(&game->data, px, py, 0x00FF0000);
+		ft_mlx_pixel_put(&game->data, px, py, RED);
 		i++;
 	}
 }

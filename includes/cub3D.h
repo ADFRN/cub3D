@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/14 12:54:54 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/15 17:25:44 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,18 @@
 /********************************/
 /*			CONSTANTES			*/
 /********************************/
+//	COLORS
+# define WHITE			0x00FFFFFF
+# define BLACK			0x00000000
+# define GREY			0x009E9E9E
+# define SKY_BLUE		0x0082C8E5
+# define RED			0x00FF0000
+//	MATH
 # ifndef M_PI
-#  define M_PI 3.14159265358979323846
+#  define M_PI			3.14159265358979323846
 # endif
 //	GAME
+# define ATH_SIZE		200
 # define WIN_HEIGHT		900
 # define WIN_WIDTH		1512
 # define FPS			60
@@ -160,7 +168,7 @@ void		raycast(t_game *game);
 
 //	render.c
 //		draw.c
-void		fill_image(t_game *game, int ground_color, int wall_color);
+void		fill_minimap(t_game *game, int ground_color, int wall_color);
 void		draw_circle(t_game *game, int cx, int cy, int radius, int color);
 void		draw_raycast(t_game *game);
 //		render.c

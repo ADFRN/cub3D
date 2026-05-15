@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 12:52:10 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/14 12:52:20 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/15 16:47:16 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	draw_column(t_game *game, t_ray *ray, int x)
 	y = drawStart;
 	while (y < drawEnd)
 	{
-		ft_mlx_pixel_put(&game->data, x, y, 0x009E9E9E);
+		ft_mlx_pixel_put(&game->data, x, y, GREY);
 		y++;
 	}
 }
