@@ -6,13 +6,13 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 12:42:15 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 13:09:57 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 16:30:06 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-t_ray	t_ray_new()
+t_ray	t_ray_new(void)
 {
 	t_ray	ray;
 

@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 12:52:10 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 16:19:39 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 16:31:42 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 static double	draw_column(t_game *game, t_ray *ray, int x)
 {
-	double	perpWallDist;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
+	double	perp_wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 	int		y;
 
 	if (ray->side == 0)
-		perpWallDist = ray->sideDistX - ray->deltaDistX;
+		perp_wall_dist = ray->sideDistX - ray->deltaDistX;
 	else
-		perpWallDist = ray->sideDistY - ray->deltaDistY;
-	lineHeight = (int)(WIN_HEIGHT / perpWallDist);
-	drawStart = -lineHeight / 2 + WIN_HEIGHT / 2;
-	if (drawStart < 0)
-		drawStart = 0;
-	drawEnd = lineHeight / 2 + WIN_HEIGHT / 2;
-	if (drawEnd >= WIN_HEIGHT)
-		drawEnd = WIN_HEIGHT - 1;
-	y = drawStart;
-	while (y < drawEnd)
+		perp_wall_dist = ray->sideDistY - ray->deltaDistY;
+	line_height = (int)(WIN_HEIGHT / perp_wall_dist);
+	draw_start = -line_height / 2 + WIN_HEIGHT / 2;
+	if (draw_start < 0)
+		draw_start = 0;
+	draw_end = line_height / 2 + WIN_HEIGHT / 2;
+	if (draw_end >= WIN_HEIGHT)
+		draw_end = WIN_HEIGHT - 1;
+	y = draw_start;
+	while (y < draw_end)
 	{
 		ft_mlx_pixel_put(&game->data, x, y, GREY);
 		y++;
 	}
-	return (perpWallDist);
+	return (perp_wall_dist);
 }
 
 void	raycast(t_game *game)

@@ -6,13 +6,13 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:43 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 13:25:40 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 16:30:01 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-t_player	t_player_new()
+t_player	t_player_new(void)
 {
 	t_player	player;
 

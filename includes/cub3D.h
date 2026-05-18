@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/18 16:21:15 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 16:32:55 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ typedef struct s_game
 /********************************/
 
 //	!!! DEBUG !!!
-char		**DEBUG_map();
+char		**debug_map();
 
 //	player.c
 //		player_action.c
@@ -202,16 +202,16 @@ t_data		t_data_new(void	*mlx_ptr);
 //		t_game.c
 t_game		t_game_new(char **map);
 //		t_keys.c
-t_keys		t_keys_new();
+t_keys		t_keys_new(void);
 //		t_map.c
 t_map		t_map_new(char **map);
 //		t_minimap.c
 t_minimap	t_minimap_new(t_map map, t_ray ray);
 void		t_minimap_update(t_minimap *minimap, t_ray ray);
 //		t_player.c
-t_player	t_player_new();
+t_player	t_player_new(void);
 //		t_ray.c
-t_ray		t_ray_new();
+t_ray		t_ray_new(void);
 void		t_ray_update(t_game *game, t_ray *ray, int x);
 
 //	utils.c

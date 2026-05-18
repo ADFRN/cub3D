@@ -6,30 +6,28 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:28:31 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 12:15:20 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 16:25:39 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void rotate_player(t_player *player, double angle)
+static void	rotate_player(t_player *player, double angle)
 {
-	double  old_dir_x;
-	double  old_plane_x;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	old_dir_x = player->dirX;
 	player->dirX = old_dir_x * cos(angle) - player->dirY * sin(angle);
 	player->dirY = old_dir_x * sin(angle) + player->dirY * cos(angle);
-
 	old_plane_x = player->planeX;
 	player->planeX = old_plane_x * cos(angle) - player->planeY * sin(angle);
 	player->planeY = old_plane_x * sin(angle) + player->planeY * cos(angle);
-
 	player->rayDirX = player->dirX + player->planeX * player->cameraX;
 	player->rayDirY = player->dirY + player->planeY * player->cameraX;
 }
 
-static void update_player_pos(t_game *game)
+static void	update_player_pos(t_game *game)
 {
 	double	speed;
 
@@ -72,7 +70,7 @@ static void	update_player_dir(t_game *game, int radius)
 		game->player.posY = WIN_HEIGHT - radius;
 }
 
-void update_player(t_game *game)
+void	update_player(t_game *game)
 {
 	update_player_pos(game);
 	update_player_dir(game, game->player.radius);

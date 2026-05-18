@@ -6,17 +6,17 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:27:15 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 16:21:12 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 16:28:37 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void draw_ray(t_game *game, t_player *player, int x, int range)
+static void	draw_ray(t_game *game, t_player *player, int x, int range)
 {
-	int i;
-	int px;
-	int py;
+	int	i;
+	int	px;
+	int	py;
 
 	player->cameraX = 2.0 * x / (double)WIN_WIDTH - 1.0;
 	player->rayDirX = player->dirX + player->planeX * player->cameraX;
@@ -38,7 +38,7 @@ void	draw_player(t_game *game, int cx, int cy, int color)
 	int	x;
 	int	y;
 	int	radius;
-	
+
 	radius = PLAYER_RADIUS;
 	y = -radius;
 	while (y <= radius)
@@ -55,30 +55,32 @@ void	draw_player(t_game *game, int cx, int cy, int color)
 	}
 }
 
-static double	get_perpWallDist(t_ray *ray)
+static double	get_wall_dist(t_ray *ray)
 {
-	double	perpWallDist;
+	double	perp_wall_dist;
 
 	if (ray->side == 0)
-		perpWallDist = ray->sideDistX - ray->deltaDistX;
+		perp_wall_dist = ray->sideDistX - ray->deltaDistX;
 	else
-		perpWallDist = ray->sideDistY - ray->deltaDistY;
-	return (perpWallDist);
+		perp_wall_dist = ray->sideDistY - ray->deltaDistY;
+	return (perp_wall_dist);
 }
 
 void	draw_raycast(t_game *game)
 {
 	int		x;
 	int		cell_size;
-	t_ray	ray = t_ray_new();
+	t_ray	ray;
 
-	x = 0;
+	ray = t_ray_new();
 	cell_size = game->minimap.cell_size;
-	for (int x = 0; x < WIN_WIDTH; x++)
+	x = 0;
+	while (x < WIN_WIDTH)
 	{
 		t_ray_update(game, &ray, x);
 		init_step(&ray);
 		dda_loop(game, &ray);
-		draw_ray(game, &game->player, x, get_perpWallDist(&ray) * cell_size);
+		draw_ray(game, &game->player, x, get_wall_dist(&ray) * cell_size);
+		x++;
 	}
 }
