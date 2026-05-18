@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:28:31 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 16:25:39 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 17:24:42 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,46 @@ static void	rotate_player(t_player *player, double angle)
 	player->rayDirY = player->dirY + player->planeY * player->cameraX;
 }
 
-static void	update_player_pos(t_game *game)
+//static bool	is_wall(t_game *game, int pos_x, int pos_y)
+//{
+//	int	cell_w;
+//	int	cell_h;
+
+//	cell_w = WIN_WIDTH / game->map.width;
+//	cell_h = WIN_HEIGHT / game->map.height;
+//	if (pos_y >= game->map.height)
+//		pos_y = game->map.height - 1;
+//	if (pos_x >= game->map.width)
+//		pos_x = game->map.width - 1;
+//	printf("map[%d][%d] = %c\n", pos_y, pos_x, game->map.map[pos_y/cell_h][pos_x/cell_w]);
+//	return (false);
+//}
+
+static void	update_player_pos(t_game *game, t_player *p, t_keys keys)
 {
 	double	speed;
+	(void)game;
 
-	speed = game->player.mov_speed;
-	if (game->keys.w)
+	speed = p->mov_speed;
+	if (keys.w)
 	{
-		game->player.posX += game->player.dirX * speed;
-		game->player.posY += game->player.dirY * speed;
+		p->posX += p->dirX * speed;
+		p->posY += p->dirY * speed;
 	}
-	if (game->keys.s)
+	if (keys.s)
 	{
-		game->player.posX -= game->player.dirX * speed;
-		game->player.posY -= game->player.dirY * speed;
+		p->posX -= p->dirX * speed;
+		p->posY -= p->dirY * speed;
 	}
-	if (game->keys.a)
+	if (keys.a)
 	{
-		game->player.posX += game->player.dirY * speed;
-		game->player.posY -= game->player.dirX * speed;
+		p->posX += p->dirY * speed;
+		p->posY -= p->dirX * speed;
 	}
-	if (game->keys.d)
+	if (keys.d)
 	{
-		game->player.posX -= game->player.dirY * speed;
-		game->player.posY += game->player.dirX * speed;
+		p->posX -= p->dirY * speed;
+		p->posY += p->dirX * speed;
 	}
 }
 
@@ -72,6 +88,6 @@ static void	update_player_dir(t_game *game, int radius)
 
 void	update_player(t_game *game)
 {
-	update_player_pos(game);
+	update_player_pos(game, &game->player, game->keys);
 	update_player_dir(game, game->player.radius);
 }
