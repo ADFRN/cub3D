@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:27:15 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 16:07:30 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 16:21:12 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,61 +55,9 @@ void	draw_player(t_game *game, int cx, int cy, int color)
 	}
 }
 
-static void	init_step(t_ray *ray)
+static double	get_perpWallDist(t_ray *ray)
 {
-	if (ray->dirX < 0)
-	{
-		ray->stepX = -1;
-		ray->sideDistX = (ray->posX - ray->mapX) * ray->deltaDistX;
-	}
-	else
-	{
-		ray->stepX = 1;
-		ray->sideDistX = (ray->mapX + 1.0 - ray->posX) * ray->deltaDistX;
-	}
-	if (ray->dirY < 0)
-	{
-		ray->stepY = -1;
-		ray->sideDistY = (ray->posY - ray->mapY) * ray->deltaDistY;
-	}
-	else
-	{
-		ray->stepY = 1;
-		ray->sideDistY = (ray->mapY + 1.0 - ray->posY) * ray->deltaDistY;
-	}
-}
-
-static void	dda_loop(t_game *game, t_ray *ray)
-{
-	while (!ray->hit)
-	{
-		if (ray->sideDistX < ray->sideDistY)
-		{
-			ray->sideDistX += ray->deltaDistX;
-			ray->mapX += ray->stepX;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->sideDistY += ray->deltaDistY;
-			ray->mapY += ray->stepY;
-			ray->side = 1;
-		}
-		if (ray->mapX < 0 || ray->mapY < 0
-			|| ray->mapX >= game->map.width
-			|| ray->mapY >= game->map.height)
-		{
-			ray->hit = true;
-			continue ;
-		}
-		if (game->map.map[ray->mapY][ray->mapX] == '1')
-			ray->hit = true;
-	}
-}
-
-static int	get_perpWallDist(t_ray *ray)
-{
-	int	perpWallDist;
+	double	perpWallDist;
 
 	if (ray->side == 0)
 		perpWallDist = ray->sideDistX - ray->deltaDistX;
@@ -120,17 +68,17 @@ static int	get_perpWallDist(t_ray *ray)
 
 void	draw_raycast(t_game *game)
 {
-	t_ray	ray = t_ray_new();
 	int		x;
+	int		cell_size;
+	t_ray	ray = t_ray_new();
 
 	x = 0;
+	cell_size = game->minimap.cell_size;
 	for (int x = 0; x < WIN_WIDTH; x++)
 	{
 		t_ray_update(game, &ray, x);
 		init_step(&ray);
 		dda_loop(game, &ray);
-		int	dist = get_perpWallDist(&ray);
-		dist *= game->minimap.cell_size;
-		draw_ray(game, &game->player, x, dist);
+		draw_ray(game, &game->player, x, get_perpWallDist(&ray) * cell_size);
 	}
 }

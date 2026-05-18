@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/18 16:02:38 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 16:21:15 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,8 @@ void		update_player(t_game *game);
 //	raycast
 //		raycaster.c
 void		raycast(t_game *game);
+void		init_step(t_ray *ray);
+void		dda_loop(t_game *game, t_ray *ray);
 
 //	render.c
 //		minimap_draw.c
