@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 12:52:10 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/15 16:47:16 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 13:12:29 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,15 @@ static void	draw_column(t_game *game, t_ray *ray, int x)
 
 void	raycast(t_game *game)
 {
-	t_ray	ray;
 	int		x;
 
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
-		t_ray_init(game, &ray, x);
-		init_step(&ray);
-		dda_loop(game, &ray);
-		draw_column(game, &ray, x);
+		t_ray_update(game, &game->ray, x);
+		init_step(&game->ray);
+		dda_loop(game, &game->ray);
+		draw_column(game, &game->ray, x);
 		x++;
 	}
 }

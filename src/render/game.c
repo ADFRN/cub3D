@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:27:17 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/15 17:25:20 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 11:53:30 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@ static void	calculate_rot_mov_speed(t_game *game)
 	game->last_frame = time;
 	game->player.mov_speed = MOV_SPEED * delta;
 	game->player.rot_speed = ROT_SPEED * delta;
-}
-
-static void	minimap(t_game *game, int ground_c, int wall_c, int player_c)
-{
-	fill_minimap(game, ground_c, wall_c);
-	draw_circle(
-		game,
-		game->player.posX,
-		game->player.posY,
-		game->player.radius,
-		player_c);
-	draw_raycast(game);
 }
 
 static void	sky_and_ground(t_game *game, int ground, int ceiling)

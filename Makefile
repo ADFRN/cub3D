@@ -6,7 +6,7 @@
 #    By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-#    Updated: 2026/05/14 12:45:16 by ttiprez          ###   ########.fr        #
+#    Updated: 2026/05/18 12:32:17 by ttiprez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,12 +42,14 @@ SRCS          =	$(SRC_DIR)/main.c								\
 				$(SRC_DIR)/player/player_action.c				\
 				$(SRC_DIR)/player/player.c						\
 				$(SRC_DIR)/raycast/raycaster.c					\
-				$(SRC_DIR)/render/draw.c						\
-				$(SRC_DIR)/render/render.c						\
+				$(SRC_DIR)/render/game.c						\
+				$(SRC_DIR)/render/minimap.c						\
+				$(SRC_DIR)/render/minimap_draw.c				\
 				$(SRC_DIR)/structures/t_data.c					\
 				$(SRC_DIR)/structures/t_game.c					\
 				$(SRC_DIR)/structures/t_keys.c					\
 				$(SRC_DIR)/structures/t_map.c					\
+				$(SRC_DIR)/structures/t_minimap.c				\
 				$(SRC_DIR)/structures/t_player.c				\
 				$(SRC_DIR)/structures/t_ray.c					\
 				$(SRC_DIR)/utils/mlx_utils.c					\

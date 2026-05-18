@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/15 17:25:44 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 13:09:56 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,26 @@
 # define GREY			0x009E9E9E
 # define SKY_BLUE		0x0082C8E5
 # define RED			0x00FF0000
+
 //	MATH
 # ifndef M_PI
 #  define M_PI			3.14159265358979323846
 # endif
+
 //	GAME
 # define ATH_SIZE		200
+# define TEST_RADIUS	ATH_SIZE / 100 * 3
 # define WIN_HEIGHT		900
 # define WIN_WIDTH		1512
 # define FPS			60
 # define FRAME_TIME		(1000000 / FPS)	// En microsecondes
+# define RENDER_DIST	300
+
+// PLAYER
+# define FOV			100
+# define PLAYER_RADIUS	10
 # define ROT_SPEED		4.0
 # define MOV_SPEED		200.0
-# define FOV			100
-# define RENDER_DIST	300
 
 //	MAP
 # define WEST_SPAWN		'W'
@@ -99,6 +105,16 @@ typedef struct s_player
 	double	cameraX;	// Position camera
 }	t_player;
 
+typedef struct s_minimap
+{
+	int		width;
+	int		height;
+	int		cell_size;
+	int		p_radius;
+	double	p_posX;
+	double	p_posY;
+}	t_minimap;
+
 typedef struct s_data
 {
 	void	*img;
@@ -140,8 +156,10 @@ typedef struct s_game
 	void		*win;
 	long		last_frame;
 	t_map		map;
-	t_keys		keys;
 	t_player	player;
+	t_ray		ray;
+	t_minimap	minimap;
+	t_keys		keys;
 	t_data		data;
 }	t_game;
 
@@ -167,11 +185,12 @@ void		update_player(t_game *game);
 void		raycast(t_game *game);
 
 //	render.c
-//		draw.c
-void		fill_minimap(t_game *game, int ground_color, int wall_color);
-void		draw_circle(t_game *game, int cx, int cy, int radius, int color);
+//		minimap_draw.c
+void		draw_player(t_game *game, int cx, int cy, int color);
 void		draw_raycast(t_game *game);
-//		render.c
+//		minimap.c
+void		minimap(t_game *game, int ground_c, int wall_c, int player_c);
+//		game.c
 int			render_next_frame(t_game *game);
 
 //	structures.c
@@ -183,10 +202,14 @@ t_game		t_game_new(char **map);
 t_keys		t_keys_new();
 //		t_map.c
 t_map		t_map_new(char **map);
+//		t_minimap.c
+t_minimap	t_minimap_new(t_map map, t_ray ray);
+void		t_minimap_update(t_minimap *minimap, t_ray ray);
 //		t_player.c
 t_player	t_player_new();
 //		t_ray.c
-void		t_ray_init(t_game *game, t_ray *ray, int x);
+t_ray		t_ray_new();
+void		t_ray_update(t_game *game, t_ray *ray, int x);
 
 //	utils.c
 //		mlx_utils.c
