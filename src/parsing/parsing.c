@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:04 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/18 12:54:45 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/18 13:48:20 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,16 @@ static bool	stock_info(t_map *map, char *line)
 	int	i;
 
 	i = 0;
+	while (line[i] && line[i] == ' ')
+		i++;
 	if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
 		return (get_textures(map, line));
 	else if (line[i] == 'F' || line[i] == 'C')
 		return (get_colors(map, line));
+	else if (line[i] != 'N' || line[i] != 'S' || line[i] != 'W'
+		|| line[i] != 'E' || line[i] != 'F' || line[i] != 'C'
+		|| line[i] != '\n')
+		return (ft_putendl_fd("Error\nInvalid character", STDERR_FILENO), false);
 	else
 		return (true);
 }
