@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:04 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/18 13:48:20 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/18 17:35:34 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static bool	stock_info(t_map *map, char *line)
 	else if (line[i] != 'N' || line[i] != 'S' || line[i] != 'W'
 		|| line[i] != 'E' || line[i] != 'F' || line[i] != 'C'
 		|| line[i] != '\n')
-		return (ft_putendl_fd("Error\nInvalid character", STDERR_FILENO), false);
+		return (ft_putendl_fd("Error\nInvalid character", STDERR_FILENO),
+			false);
 	else
 		return (true);
 }
@@ -59,21 +60,27 @@ static char	**expand_map(char **old_map, int old_size, char *new_line)
 		new_map[i] = old_map[i];
 		i++;
 	}
-	new_map[old_size] = new_line;
+	new_map[old_size] = ft_strdup_classic(new_line);
 	new_map[old_size + 1] = NULL;
 	free(old_map);
 	return (new_map);
 }
 
-static bool	info_while(t_map *map, char *line, int size)
+static bool	info_while(t_map *map, char *line, int *size)
 {
 	if (!is_map(line))
 		return (stock_info(map, line));
 	else
 	{
-		map->height = size;
-		map->map = expand_map(map->map, size, line);
-		size++;
+		if (!map->has_ceiling || !map->has_floor || !map->has_ea || !map->has_no
+			|| !map->has_so || !map->has_we)
+			return (ft_putendl_fd("Error\nMap before colors and textures",
+					STDERR_FILENO), false);
+		if (*size == 0 && line[0] == '\n')
+			return (true);
+		map->height = *size;
+		map->map = expand_map(map->map, *size, line);
+		(*size)++;
 	}
 	return (true);
 }
@@ -91,8 +98,11 @@ bool	get_map_info(t_map *map, char *map_path)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!info_while(map, line, size))
-			return (false);
+		if (line[0] != '\n')
+		{
+			if (!info_while(map, line, &size))
+				return (false);
+		}
 		free(line);
 		line = get_next_line(fd);
 	}

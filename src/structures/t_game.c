@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:45 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/15 17:24:09 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/18 17:34:24 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,8 @@
 t_game	t_game_new(char *map_path)
 {
 	t_game	game;
-	t_map	map;
 
-	map = init_map();
-	if (!get_map_info(&map, map_path))
-		exit(1);
-	game.map = map;
+	game.map = t_map_new(map_path);
 	game.mlx = mlx_init();
 	if (!is_valid_texture(&game))
 		exit(1);

@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 10:25:43 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/15 17:14:56 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/18 17:20:11 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 1
 # define FORMAT_CHAR 'c'
 # define FORMAT_STR 's'
 # define FORMAT_POINT 'p'

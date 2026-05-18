@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:46 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 12:46:40 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/18 17:35:06 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,42 +34,42 @@ t_map	init_map(void)
 	return (map);
 }
 
-static int	map_height_len(char **map)
+// static int	map_height_len(char **map)
+// {
+// 	int	y;
+
+// 	y = 0;
+// 	while (map[y])
+// 		y++;
+// 	return (y);
+// }
+
+// static int	map_width_len(char **map)
+// {
+// 	int	y;
+// 	int	x;
+// 	int	max_x;
+
+// 	max_x = 0;
+// 	y = 0;
+// 	while (map[y])
+// 	{
+// 		x = 0;
+// 		while (map[y][x])
+// 			x++;
+// 		if (max_x < x)
+// 			max_x = x;
+// 		y++;
+// 	}
+// 	return (max_x);
+// }
+
+t_map	t_map_new(char *map_path)
 {
-	int	y;
+	t_map	map;
 
-	y = 0;
-	while (map[y])
-		y++;
-	return (y);
-}
-
-static int	map_width_len(char **map)
-{
-	int	y;
-	int	x;
-	int	max_x;
-
-	max_x = 0;
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-			x++;
-		if (max_x < x)
-			max_x = x;
-		y++;
-	}
-	return (max_x);
-}
-
-t_map	t_map_new(char **map)
-{
-	t_map	map_data;
-
-	map_data.map = map;
-	map_data.height = map_height_len(map);
-	map_data.width = map_width_len(map);
-	return (map_data);
+	map = init_map();
+	if (!get_map_info(&map, map_path))
+		exit(1);
+	return (map);
 }

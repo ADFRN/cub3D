@@ -6,7 +6,7 @@
 #    By: afournie <afournie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-#    Updated: 2026/05/15 17:04:47 by afournie         ###   ########.fr        #
+#    Updated: 2026/05/18 16:06:21 by afournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS          =	$(SRC_DIR)/main.c								\
 				$(SRC_DIR)/parsing/colors.c						\
 				$(SRC_DIR)/parsing/parsing.c					\
 				$(SRC_DIR)/parsing/verify.c						\
+				$(SRC_DIR)/parsing/map.c						\
 				$(SRC_DIR)/player/mouse_action.c				\
 				$(SRC_DIR)/player/player_action.c				\
 				$(SRC_DIR)/player/player.c						\
