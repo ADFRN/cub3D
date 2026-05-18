@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:48:17 by afournie          #+#    #+#             */
-/*   Updated: 2025/12/16 14:02:09 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/15 17:15:07 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static char	*append_buf(char *stash, char *buffer)
 	char	*tmp;
 
 	if (!stash)
-		stash = ft_strdup("");
+		stash = ft_strdup_classic("");
 	tmp = stash;
-	stash = ft_strjoin(tmp, buffer);
+	stash = ft_strjoin_classic(tmp, buffer);
 	free(tmp);
 	return (stash);
 }
@@ -59,7 +59,7 @@ char	*set_line(char *line_buffer)
 	if (line_buffer[count] == '\0')
 		return (NULL);
 	total_len = ft_strlen(line_buffer);
-	stash = ft_substr(line_buffer, count + 1, total_len - (count + 1));
+	stash = ft_substr_classic(line_buffer, count + 1, total_len - (count + 1));
 	if (stash && stash[0] == 0)
 	{
 		free(stash);

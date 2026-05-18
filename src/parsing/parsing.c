@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:04 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/15 15:05:43 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/18 12:54:45 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,17 @@ static bool	is_map(char *line)
 		return (true);
 }
 
-static void	stock_info(t_map *map, char *line)
+static bool	stock_info(t_map *map, char *line)
 {
 	int	i;
 
 	i = 0;
 	if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
-	{
-		if (!get_textures(map, line))
-			exit(1);
-	}
+		return (get_textures(map, line));
 	else if (line[i] == 'F' || line[i] == 'C')
-	{
-		if (!get_colors(map, line))
-			exit(1);
-	}
+		return (get_colors(map, line));
 	else
-		return ;
+		return (true);
 }
 
 static char	**expand_map(char **old_map, int old_size, char *new_line)
@@ -65,30 +59,40 @@ static char	**expand_map(char **old_map, int old_size, char *new_line)
 	return (new_map);
 }
 
+static bool	info_while(t_map *map, char *line, int size)
+{
+	if (!is_map(line))
+		return (stock_info(map, line));
+	else
+	{
+		map->height = size;
+		map->map = expand_map(map->map, size, line);
+		size++;
+	}
+	return (true);
+}
 
-void	get_map_info(t_map *map, char *map_path)
+bool	get_map_info(t_map *map, char *map_path)
 {
 	int		fd;
 	char	*line;
 	int		size;
 
 	size = 0;
-	map->map = NULL;
 	fd = open(map_path, O_RDONLY);
 	if (fd < 0)
-		return ;
+		return (false);
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!is_map(line))
-			stock_info(map, line);
-		else
-		{
-			map->height = size;
-			map->map = expand_map(map->map, size, line);
-			size++;
-		}
+		if (!info_while(map, line, size))
+			return (false);
+		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	close(fd);
+	if (!verify_all_data(map))
+		return (false);
+	return (true);
 }

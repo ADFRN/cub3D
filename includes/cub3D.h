@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/15 15:05:10 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/18 13:24:34 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,13 @@ typedef struct s_map
 	char	*ea_txt;
 	int		floor_color;
 	int		ceiling_color;
+
+	int		has_no;
+	int		has_so;
+	int		has_we;
+	int		has_ea;
+	int		has_floor;
+	int		has_ceiling;
 }			t_map;
 
 typedef struct s_ray
@@ -152,9 +159,11 @@ typedef struct s_game
 char		**DEBUG_map();
 
 // Parsing
-void	get_map_info(t_map *map, char *map_path);
+bool	get_map_info(t_map *map, char *map_path);
 bool	get_textures(t_map *map, char *line);
 bool	get_colors(t_map *map, char *line);
+bool	is_valid_texture(t_game *game);
+bool verify_all_data(t_map *map);
 
 //	player.c
 //		player_action.c
@@ -186,6 +195,7 @@ t_game	t_game_new(char *map_path);
 //		t_keys.c
 t_keys		t_keys_new();
 //		t_map.c
+t_map		init_map(void);
 t_map		t_map_new(char **map);
 //		t_player.c
 t_player	t_player_new();
