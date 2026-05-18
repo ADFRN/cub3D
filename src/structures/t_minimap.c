@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 12:17:39 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 13:10:41 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 13:26:55 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_minimap	t_minimap_new(t_map map, t_ray ray)
 {
 	t_minimap	minimap;
 
-	//ray->posX = game->player.posX / cell_w;
 	minimap.cell_size = ATH_SIZE / map.width;
 	if (minimap.cell_size < ATH_SIZE / map.height)
 		minimap.cell_size = ATH_SIZE / map.height;

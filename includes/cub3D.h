@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/18 13:09:56 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/18 16:02:38 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,20 @@
 # endif
 
 //	GAME
-# define ATH_SIZE		200
-# define TEST_RADIUS	ATH_SIZE / 100 * 3
 # define WIN_HEIGHT		900
 # define WIN_WIDTH		1512
 # define FPS			60
 # define FRAME_TIME		(1000000 / FPS)	// En microsecondes
-# define RENDER_DIST	300
 
-// PLAYER
+//	PLAYER
 # define FOV			100
-# define PLAYER_RADIUS	10
 # define ROT_SPEED		4.0
 # define MOV_SPEED		200.0
+
+//	MINIMAP
+# define ATH_SIZE		200
+# define PLAYER_RADIUS	ATH_SIZE / 100 * 2
+# define RAYCAST_RANGE	100
 
 //	MAP
 # define WEST_SPAWN		'W'
