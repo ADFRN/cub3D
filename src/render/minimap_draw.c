@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:27:15 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 16:28:37 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/19 10:41:50 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static void	draw_ray(t_game *game, t_player *player, int x, int range)
 	int	px;
 	int	py;
 
-	player->cameraX = 2.0 * x / (double)WIN_WIDTH - 1.0;
-	player->rayDirX = player->dirX + player->planeX * player->cameraX;
-	player->rayDirY = player->dirY + player->planeY * player->cameraX;
+	player->camerax = 2.0 * x / (double)WIN_WIDTH - 1.0;
+	player->raydir_x = player->dirx + player->planex * player->camerax;
+	player->raydir_y = player->diry + player->planey * player->camerax;
 	i = 0;
 	while (i < range)
 	{
-		px = game->minimap.p_posX + (int)(player->rayDirX * i);
-		py = game->minimap.p_posY + (int)(player->rayDirY * i);
+		px = game->minimap.p_posx + (int)(player->raydir_x * i);
+		py = game->minimap.p_posy + (int)(player->raydir_y * i);
 		if (px < 0 || px >= WIN_WIDTH || py < 0 || py >= WIN_HEIGHT)
 			break ;
 		ft_mlx_pixel_put(&game->data, px, py, RED);
@@ -60,9 +60,9 @@ static double	get_wall_dist(t_ray *ray)
 	double	perp_wall_dist;
 
 	if (ray->side == 0)
-		perp_wall_dist = ray->sideDistX - ray->deltaDistX;
+		perp_wall_dist = ray->side_dist_x - ray->delta_dist_x;
 	else
-		perp_wall_dist = ray->sideDistY - ray->deltaDistY;
+		perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
 	return (perp_wall_dist);
 }
 

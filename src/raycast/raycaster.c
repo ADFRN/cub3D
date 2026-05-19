@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 12:52:10 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 16:31:42 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/19 10:40:56 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static double	draw_column(t_game *game, t_ray *ray, int x)
 	int		y;
 
 	if (ray->side == 0)
-		perp_wall_dist = ray->sideDistX - ray->deltaDistX;
+		perp_wall_dist = ray->side_dist_x - ray->delta_dist_x;
 	else
-		perp_wall_dist = ray->sideDistY - ray->deltaDistY;
+		perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
 	line_height = (int)(WIN_HEIGHT / perp_wall_dist);
 	draw_start = -line_height / 2 + WIN_HEIGHT / 2;
 	if (draw_start < 0)
@@ -57,25 +57,25 @@ void	raycast(t_game *game)
 
 void	init_step(t_ray *ray)
 {
-	if (ray->dirX < 0)
+	if (ray->dirx < 0)
 	{
-		ray->stepX = -1;
-		ray->sideDistX = (ray->posX - ray->mapX) * ray->deltaDistX;
+		ray->stepx = -1;
+		ray->side_dist_x = (ray->posx - ray->mapx) * ray->delta_dist_x;
 	}
 	else
 	{
-		ray->stepX = 1;
-		ray->sideDistX = (ray->mapX + 1.0 - ray->posX) * ray->deltaDistX;
+		ray->stepx = 1;
+		ray->side_dist_x = (ray->mapx + 1.0 - ray->posx) * ray->delta_dist_x;
 	}
-	if (ray->dirY < 0)
+	if (ray->diry < 0)
 	{
-		ray->stepY = -1;
-		ray->sideDistY = (ray->posY - ray->mapY) * ray->deltaDistY;
+		ray->stepy = -1;
+		ray->side_dist_y = (ray->posy - ray->mapy) * ray->delta_dist_y;
 	}
 	else
 	{
-		ray->stepY = 1;
-		ray->sideDistY = (ray->mapY + 1.0 - ray->posY) * ray->deltaDistY;
+		ray->stepy = 1;
+		ray->side_dist_y = (ray->mapy + 1.0 - ray->posy) * ray->delta_dist_y;
 	}
 }
 
@@ -83,26 +83,26 @@ void	dda_loop(t_game *game, t_ray *ray)
 {
 	while (!ray->hit)
 	{
-		if (ray->sideDistX < ray->sideDistY)
+		if (ray->side_dist_x < ray->side_dist_y)
 		{
-			ray->sideDistX += ray->deltaDistX;
-			ray->mapX += ray->stepX;
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->mapx += ray->stepx;
 			ray->side = 0;
 		}
 		else
 		{
-			ray->sideDistY += ray->deltaDistY;
-			ray->mapY += ray->stepY;
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->mapy += ray->stepy;
 			ray->side = 1;
 		}
-		if (ray->mapX < 0 || ray->mapY < 0
-			|| ray->mapX >= game->map.width
-			|| ray->mapY >= game->map.height)
+		if (ray->mapx < 0 || ray->mapy < 0
+			|| ray->mapx >= game->map.width
+			|| ray->mapy >= game->map.height)
 		{
 			ray->hit = true;
 			continue ;
 		}
-		if (game->map.map[ray->mapY][ray->mapX] == '1')
+		if (game->map.map[ray->mapy][ray->mapx] == '1')
 			ray->hit = true;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 11:50:25 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 16:26:08 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/19 10:41:50 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	minimap(t_game *game, int ground_c, int wall_c, int player_c)
 	t_minimap_update(&game->minimap, game->ray);
 	draw_player(
 		game,
-		game->minimap.p_posX,
-		game->minimap.p_posY,
+		game->minimap.p_posx,
+		game->minimap.p_posy,
 		player_c);
 	draw_raycast(game);
 }

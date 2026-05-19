@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:43 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 16:35:49 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/19 10:41:35 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ t_player	t_player_new(void)
 	player.radius = PLAYER_RADIUS;
 	player.mov_speed = 0;
 	player.rot_speed = 0;
-	player.posX = 100;
-	player.posY = 100;
-	player.dirX = 1;
-	player.dirY = 0;
-	player.planeX = -player.dirY * (tan(FOV * M_PI / 180 / 2));
-	player.planeY = player.dirX * (tan(FOV * M_PI / 180 / 2));
-	player.rayDirX = 0;
-	player.rayDirY = 0;
-	player.cameraX = 0;
+	player.posx = 100;
+	player.posy = 100;
+	player.dirx = 1;
+	player.diry = 0;
+	player.planex = -player.diry * (tan(FOV * M_PI / 180 / 2));
+	player.planey = player.dirx * (tan(FOV * M_PI / 180 / 2));
+	player.raydir_x = 0;
+	player.raydir_y = 0;
+	player.camerax = 0;
 	return (player);
 }

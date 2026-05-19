@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/19 10:28:55 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/19 10:41:50 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,15 @@ typedef struct s_player
 	int		radius;
 	double	mov_speed;
 	double	rot_speed;
-	double	posX;
-	double	posY;
-	double	dirX;		// -1 N | 1 S | 0
-	double	dirY;		// -1 W | 1 E | 0
-	double	planeX;		// -0.66 W | 0.66 E | 0
-	double	planeY;		// -0.66 N | 0.66 S | 0
-	double	rayDirX;
-	double	rayDirY;
-	double	cameraX;	// Position camera
+	double	posx;
+	double	posy;
+	double	dirx;		// -1 N | 1 S | 0
+	double	diry;		// -1 W | 1 E | 0
+	double	planex;		// -0.66 W | 0.66 E | 0
+	double	planey;		// -0.66 N | 0.66 S | 0
+	double	raydir_x;
+	double	raydir_y;
+	double	camerax;	// Position camera
 }	t_player;
 
 typedef struct s_minimap
@@ -116,8 +116,8 @@ typedef struct s_minimap
 	int		height;
 	int		cell_size;
 	int		p_radius;
-	double	p_posX;
-	double	p_posY;
+	double	p_posx;
+	double	p_posy;
 }	t_minimap;
 
 typedef struct s_data
@@ -138,19 +138,19 @@ typedef struct s_map
 
 typedef struct s_ray
 {
-	double	cameraX;
-	double	dirX;
-	double	dirY;
-	double	posX;
-	double	posY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	sideDistX;
-	double	sideDistY;
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
+	double	camerax;
+	double	dirx;
+	double	diry;
+	double	posx;
+	double	posy;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		mapx;
+	int		mapy;
+	int		stepx;
+	int		stepy;
 	int		hit;
 	int		side;
 }	t_ray;
