@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:43 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/19 10:41:35 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/19 10:47:04 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_player	t_player_new(void)
 {
 	t_player	player;
 
-	player.radius = PLAYER_RADIUS;
+	player.radius = (ATH_SIZE / 100 * 2);
 	player.mov_speed = 0;
 	player.rot_speed = 0;
 	player.posx = 100;

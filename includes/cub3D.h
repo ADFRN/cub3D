@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/19 10:41:50 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/19 10:47:48 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@
 # define WIN_HEIGHT		900
 # define WIN_WIDTH		1512
 # define FPS			60
-# define FRAME_TIME		(1000000 / FPS)	// En microsecondes
 
 //	PLAYER
 # define FOV			100
@@ -56,7 +55,6 @@
 
 //	MINIMAP
 # define ATH_SIZE		200
-# define PLAYER_RADIUS	ATH_SIZE / 100 * 2
 # define RAYCAST_RANGE	100
 
 //	MAP
@@ -173,7 +171,7 @@ typedef struct s_game
 /********************************/
 
 //	!!! DEBUG !!!
-char		**debug_map();
+char		**debug_map(void);
 
 //	player.c
 //		player_action.c

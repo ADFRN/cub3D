@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:27:15 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/19 10:41:50 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/19 10:46:59 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_player(t_game *game, int cx, int cy, int color)
 	int	y;
 	int	radius;
 
-	radius = PLAYER_RADIUS;
+	radius = (ATH_SIZE / 100 * 2);
 	y = -radius;
 	while (y <= radius)
 	{

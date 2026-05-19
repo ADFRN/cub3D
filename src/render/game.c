@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:27:17 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/19 10:29:21 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/19 10:46:43 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	sky_and_ground(t_game *game, int ground, int ceiling)
 
 int	render_next_frame(t_game *game)
 {
-	if (get_time_us() - game->last_frame < FRAME_TIME)
+	if (get_time_us() - game->last_frame < (1000000 / FPS))
 		return (0);
 	calculate_rot_mov_speed(game);
 	update_player(game);
