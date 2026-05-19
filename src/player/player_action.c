@@ -28,6 +28,8 @@ int	key_press(int key, t_game *game)
 		game->keys.left = true;
 	else if (key == RIGHT_KEY)
 		game->keys.right = true;
+	else if (key == SHIFT_KEY)
+		game->keys.shift = true;
 	return (1);
 }
 
@@ -45,5 +47,7 @@ int	key_release(int key, t_game *game)
 		game->keys.left = false;
 	else if (key == RIGHT_KEY)
 		game->keys.right = false;
+	else if (key == SHIFT_KEY)
+		game->keys.shift = false;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/18 16:56:44 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/19 10:28:55 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define GREY			0x009E9E9E
 # define SKY_BLUE		0x0082C8E5
 # define RED			0x00FF0000
+# define WOOD_BROWN		0x009d7153
 
 //	MATH
 # ifndef M_PI
@@ -51,6 +52,7 @@
 # define FOV			100
 # define ROT_SPEED		4.0
 # define MOV_SPEED		200.0
+# define SPEED_MULT		2
 
 //	MINIMAP
 # define ATH_SIZE		200
@@ -71,6 +73,7 @@
 # define A_KEY			97
 # define S_KEY			115
 # define D_KEY			100
+# define SHIFT_KEY		65505
 # define UP_KEY			65362
 # define LEFT_KEY		65361
 # define DOWN_KEY		65364
@@ -88,6 +91,7 @@ typedef struct s_keys
 	bool	d;
 	bool	left;
 	bool	right;
+	bool	shift;
 }	t_keys;
 
 typedef struct s_player

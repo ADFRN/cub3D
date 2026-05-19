@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:52:47 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/18 16:29:38 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/19 10:19:08 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ t_keys	t_keys_new(void)
 	keys.d = false;
 	keys.left = false;
 	keys.right = false;
+	keys.shift = false;
 	return (keys);
 }
