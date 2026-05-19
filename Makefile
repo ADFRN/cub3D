@@ -6,7 +6,7 @@
 #    By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-#    Updated: 2026/05/18 12:32:17 by ttiprez          ###   ########.fr        #
+#    Updated: 2026/05/19 11:14:14 by ttiprez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ OBJS          = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 SRCS          =	$(SRC_DIR)/main.c								\
 				$(SRC_DIR)/DEBUG.c								\
+				$(SRC_DIR)/player/camera.c						\
 				$(SRC_DIR)/player/mouse_action.c				\
 				$(SRC_DIR)/player/player_action.c				\
 				$(SRC_DIR)/player/player.c						\

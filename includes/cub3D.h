@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/19 10:47:48 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/19 11:13:59 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	long		last_frame;
+	bool		mouse_warping;
 	t_map		map;
 	t_player	player;
 	t_ray		ray;
@@ -174,12 +175,14 @@ typedef struct s_game
 char		**debug_map(void);
 
 //	player.c
+//		camera.c
+void		rotate_player(t_player *player, double angle);
 //		player_action.c
 int			key_press(int key, t_game *game);
 int			key_release(int key, t_game *game);
 //		mouse_action.c
-int			mouse_click(int button, int x, int y, void *param);
-int			mouse_movement(int x, int y, void *param);
+int			mouse_click(int button, int x, int y, t_game *game);
+int			mouse_movement(int x, int y, t_game *game);
 //		player.c
 void		update_player(t_game *game);
 
