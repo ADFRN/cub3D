@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:04 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/26 16:56:55 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 17:10:57 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static bool	info_while(t_map *map, char *line, int *size)
 			return (true);
 		line = expand_tabs(line);
 		map->map = expand_map(map->map, *size, line);
+		free(line);
 		(*size)++;
 	}
 	return (true);

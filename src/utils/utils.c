@@ -23,6 +23,7 @@ int	clean_exit(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
+	t_map_free(&game->map);
 	printf("exit\n");
 	exit(EXIT_SUCCESS);
 	return (0);

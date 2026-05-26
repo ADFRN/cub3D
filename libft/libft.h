@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 10:25:43 by afournie          #+#    #+#             */
-/*   Updated: 2026/04/27 11:15:12 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/18 17:20:11 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 1
 # define FORMAT_CHAR 'c'
 # define FORMAT_STR 's'
 # define FORMAT_POINT 'p'
@@ -80,6 +80,7 @@ char					*ft_strdup(const char *s1);
 char					*ft_substr(char const *s, unsigned int start,
 							size_t len);
 char					*ft_strjoin(const char *s1, const char *s2);
+char					*ft_strjoin_classic(const char *s1, const char *s2);
 char					*ft_strtrim(char const *s1, char const *set);
 char					**ft_split(char const *s, char c);
 char					*ft_itoa(int n);

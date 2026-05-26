@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:46 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/26 16:57:33 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 17:09:47 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,13 @@ t_map	t_map_new(char *map_path)
 	map_data.height = map_height_len(map_data.map);
 	map_data.width = map_width_len(map_data.map);
 	return (map_data);
+}
+
+void	t_map_free(t_map *map)
+{
+	free_map(map->map);
+	free(map->ea_txt);
+	free(map->so_txt);
+	free(map->no_txt);
+	free(map->we_txt);
 }

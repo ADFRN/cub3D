@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/26 16:49:23 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 17:11:34 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,9 +185,6 @@ typedef struct s_game
 /*			PROTOTYPES			*/
 /********************************/
 
-//	!!! DEBUG !!!
-char		**debug_map(void);
-
 //	parsing
 //		colors.c
 bool		get_colors(t_map *map, char *line);
@@ -247,6 +244,7 @@ t_game		t_game_new(char *map_path);
 t_keys		t_keys_new(void);
 //		t_map.c
 t_map		t_map_new(char *map_path);
+void		t_map_free(t_map *map);
 //		t_minimap.c
 t_minimap	t_minimap_new(t_map map, t_ray ray);
 void		t_minimap_update(t_minimap *minimap, t_ray ray);

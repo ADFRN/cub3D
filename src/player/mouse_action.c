@@ -20,7 +20,7 @@ int	mouse_click(int button, int x, int y, t_game *game)
 }
 
 int	mouse_move(int x, int y, t_game *game)
-{	
+{
 	(void)x;
 	(void)y;
 	if (game->mouse_warping)
@@ -34,6 +34,7 @@ int	mouse_movement(int start_x, int start_y, t_game *game)
 {
 	int	x;
 	int	y;
+	int	delta_x;
 
 	(void)start_x;
 	(void)start_y;
@@ -42,7 +43,7 @@ int	mouse_movement(int start_x, int start_y, t_game *game)
 		mouse_move(WIN_WIDTH / 3 * 2, 0, game);
 	if (x >= WIN_WIDTH / 3 * 2)
 		mouse_move(WIN_WIDTH / 3 * 1, 0, game);
-	int delta_x = x - WIN_WIDTH / 2;
+	delta_x = x - WIN_WIDTH / 2;
 	rotate_player(&game->player, delta_x * 0.0003);
 	return (0);
 }
