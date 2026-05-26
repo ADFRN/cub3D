@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 15:14:21 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/18 17:01:14 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/26 12:03:39 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ bool	verify_all_data(t_map *map)
 		return (ft_putendl_fd("Error\nMissing colors", STDERR_FILENO), false);
 	if (!map->has_no || !map->has_ea || !map->has_so || !map->has_we)
 		return (ft_putendl_fd("Error\nMissing textures", STDERR_FILENO), false);
-	// if (!check_map(map->map))
-	// 	return (ft_putendl_fd("Error\nMap problem", STDERR_FILENO), false);
+	if (!check_map(map->map))
+		return (ft_putendl_fd("Error\nMap problem", STDERR_FILENO), false);
 	return (true);
 }

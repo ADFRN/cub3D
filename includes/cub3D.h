@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/18 17:34:46 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/26 11:59:39 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,15 +156,22 @@ typedef struct s_game
 /********************************/
 
 //	!!! DEBUG !!!
-char		**DEBUG_map();
+char	**DEBUG_map();
 
 // Parsing
 bool	get_map_info(t_map *map, char *map_path);
+bool	find_player(char **map, int *py, int *px);
 bool	get_textures(t_map *map, char *line);
+bool	flood_fill(char **map, int y, int x);
 bool	get_colors(t_map *map, char *line);
 bool	is_valid_texture(t_game *game);
 bool	verify_all_data(t_map *map);
+char	*expand_tabs(char *line);
+char	**copy_map(char **map);
 bool	check_map(char **map);
+void	free_map(char **map);
+bool	is_player(char c);
+
 
 
 //	player.c

@@ -6,13 +6,13 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:04 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/18 17:35:34 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/26 12:18:56 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static bool	is_map(char *line)
+static bool	is_map(char *line, t_map *map)
 {
 	int	i;
 
@@ -20,8 +20,16 @@ static bool	is_map(char *line)
 	while (line[i] && line[i] == ' ')
 		i++;
 	if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E'
-		|| line[i] == 'F' || line[i] == 'C' || line[i] == '\n')
+		|| line[i] == 'F' || line[i] == 'C')
 		return (false);
+	else if (line[i] == '\n')
+	{
+		if (map->has_ceiling && map->has_ea && map->has_no && map->has_floor
+			&& map->has_so && map->has_we)
+			return (true);
+		else
+			return (false);
+	}
 	else
 		return (true);
 }
@@ -33,13 +41,14 @@ static bool	stock_info(t_map *map, char *line)
 	i = 0;
 	while (line[i] && line[i] == ' ')
 		i++;
+	if (line[i] == '\n')
+		return (true);
 	if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
 		return (get_textures(map, line));
 	else if (line[i] == 'F' || line[i] == 'C')
 		return (get_colors(map, line));
 	else if (line[i] != 'N' || line[i] != 'S' || line[i] != 'W'
-		|| line[i] != 'E' || line[i] != 'F' || line[i] != 'C'
-		|| line[i] != '\n')
+		|| line[i] != 'E' || line[i] != 'F' || line[i] != 'C')
 		return (ft_putendl_fd("Error\nInvalid character", STDERR_FILENO),
 			false);
 	else
@@ -68,7 +77,7 @@ static char	**expand_map(char **old_map, int old_size, char *new_line)
 
 static bool	info_while(t_map *map, char *line, int *size)
 {
-	if (!is_map(line))
+	if (!is_map(line, map))
 		return (stock_info(map, line));
 	else
 	{
@@ -78,7 +87,8 @@ static bool	info_while(t_map *map, char *line, int *size)
 					STDERR_FILENO), false);
 		if (*size == 0 && line[0] == '\n')
 			return (true);
-		map->height = *size;
+		map->height = *size + 1;
+		line = expand_tabs(line);
 		map->map = expand_map(map->map, *size, line);
 		(*size)++;
 	}
@@ -98,11 +108,8 @@ bool	get_map_info(t_map *map, char *map_path)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line[0] != '\n')
-		{
-			if (!info_while(map, line, &size))
-				return (false);
-		}
+		if (!info_while(map, line, &size))
+			return (false);
 		free(line);
 		line = get_next_line(fd);
 	}
