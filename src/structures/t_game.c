@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:45 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/19 11:09:29 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 11:37:24 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_game	t_game_new(char **map)
 	game.win = mlx_new_window(game.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	game.last_frame = 0;
 	game.mouse_warping = false;
-	game.map = t_map_new(map);
+	game.map = t_map_new(&game, map);
 	game.player = t_player_new();
 	game.ray = t_ray_new();
 	game.minimap = t_minimap_new(game.map, game.ray);

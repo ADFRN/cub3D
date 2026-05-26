@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:46 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/14 12:06:18 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 11:42:06 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,15 @@ static int	map_width_len(char **map)
 	return (max_x);
 }
 
-t_map	t_map_new(char **map)
+t_map	t_map_new(t_game *game, char **map)
 {
 	t_map	map_data;
 
 	map_data.map = map;
 	map_data.height = map_height_len(map);
 	map_data.width = map_width_len(map);
+	map_data.doors = NULL;
+	map_data.nb_doors = 0;
+	t_door_fill(game, &map_data);
 	return (map_data);
 }

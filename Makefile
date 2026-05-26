@@ -6,7 +6,7 @@
 #    By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-#    Updated: 2026/05/19 11:14:14 by ttiprez          ###   ########.fr        #
+#    Updated: 2026/05/26 11:30:34 by ttiprez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRCS          =	$(SRC_DIR)/main.c								\
 				$(SRC_DIR)/render/minimap.c						\
 				$(SRC_DIR)/render/minimap_draw.c				\
 				$(SRC_DIR)/structures/t_data.c					\
+				$(SRC_DIR)/structures/t_door.c					\
 				$(SRC_DIR)/structures/t_game.c					\
 				$(SRC_DIR)/structures/t_keys.c					\
 				$(SRC_DIR)/structures/t_map.c					\

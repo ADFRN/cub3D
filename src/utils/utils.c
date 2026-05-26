@@ -23,6 +23,8 @@ int	clean_exit(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
+	if (game->map.doors)
+		free(game->map.doors);
 	printf("exit\n");
 	exit(EXIT_SUCCESS);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/19 11:13:59 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 11:46:55 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@
 # define SOUTH_SPAWN	'S'
 # define FLOOR			'0'
 # define WALL			'1'
+# define DOOR			'D'
 # define EXIT			'E'
 
 //	KEYS
@@ -127,11 +128,20 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
+typedef struct s_door
+{
+	int		pos_x;
+	int		pos_y;
+	bool	state;
+}	t_door;
+
 typedef struct s_map
 {
 	char	**map;
 	int		width;
 	int		height;
+	t_door	*doors;
+	int		nb_doors;
 }	t_map;
 
 typedef struct s_ray
@@ -173,6 +183,7 @@ typedef struct s_game
 
 //	!!! DEBUG !!!
 char		**debug_map(void);
+void		debug_print_t_door(t_door *doors, int nb_doors);
 
 //	player.c
 //		camera.c
@@ -204,12 +215,15 @@ int			render_next_frame(t_game *game);
 //	structures.c
 //		t_data.c
 t_data		t_data_new(void	*mlx_ptr);
+//		t_door.c
+t_door		t_door_new(bool state, int map_x, int map_y);
+void		t_door_fill(t_game *game, t_map *map);
 //		t_game.c
 t_game		t_game_new(char **map);
 //		t_keys.c
 t_keys		t_keys_new(void);
 //		t_map.c
-t_map		t_map_new(char **map);
+t_map		t_map_new(t_game *game, char **map);
 //		t_minimap.c
 t_minimap	t_minimap_new(t_map map, t_ray ray);
 void		t_minimap_update(t_minimap *minimap, t_ray ray);
