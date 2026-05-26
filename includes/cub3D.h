@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/26 16:26:44 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 16:49:23 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,21 @@ typedef struct s_map
 	char	**map;
 	int		width;
 	int		height;
-}	t_map;
+
+	char	*no_txt;
+	char	*so_txt;
+	char	*we_txt;
+	char	*ea_txt;
+	int		floor_color;
+	int		ceiling_color;
+
+	int		has_no;
+	int		has_so;
+	int		has_we;
+	int		has_ea;
+	int		has_floor;
+	int		has_ceiling;
+}			t_map;
 
 typedef struct s_ray
 {
@@ -174,7 +188,30 @@ typedef struct s_game
 //	!!! DEBUG !!!
 char		**debug_map(void);
 
-//	player.c
+//	parsing
+//		colors.c
+bool		get_colors(t_map *map, char *line);
+//		flood_fill.c
+bool		flood_fill(char **map, int y, int x);
+//		map_utils.c
+char		**copy_map(char **map);
+void		free_map(char **map);
+bool		find_player(char **map, int *py, int *px);
+//		map.c
+bool		is_player(char c);
+bool		check_map(char **map);
+//		parsing_utils.c
+char		*expand_tabs(char *line);
+//		parsing.h
+bool		get_map_info(t_map *map, char *map_path);
+//		textures.c
+bool		get_textures(t_map *map, char *line);
+//		verify.c
+bool		is_valid_texture_path(t_game *game);
+bool		is_valid_texture(t_game *game);
+bool		verify_all_data(t_map *map);
+
+//	player
 //		camera.c
 void		rotate_player(t_player *player, double angle);
 //		player_action.c
@@ -192,7 +229,7 @@ void		raycast(t_game *game);
 void		init_step(t_ray *ray);
 void		dda_loop(t_game *game, t_ray *ray);
 
-//	render.c
+//	render
 //		minimap_draw.c
 void		draw_player(t_game *game, int cx, int cy, int color);
 void		draw_raycast(t_game *game);
@@ -201,15 +238,15 @@ void		minimap(t_game *game, int ground_c, int wall_c, int player_c);
 //		game.c
 int			render_next_frame(t_game *game);
 
-//	structures.c
+//	structures
 //		t_data.c
 t_data		t_data_new(void	*mlx_ptr);
 //		t_game.c
-t_game		t_game_new(char **map);
+t_game		t_game_new(char *map_path);
 //		t_keys.c
 t_keys		t_keys_new(void);
 //		t_map.c
-t_map		t_map_new(char **map);
+t_map		t_map_new(char *map_path);
 //		t_minimap.c
 t_minimap	t_minimap_new(t_map map, t_ray ray);
 void		t_minimap_update(t_minimap *minimap, t_ray ray);
@@ -219,7 +256,7 @@ t_player	t_player_new(void);
 t_ray		t_ray_new(void);
 void		t_ray_update(t_game *game, t_ray *ray, int x);
 
-//	utils.c
+//	utils
 //		mlx_utils.c
 void		ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 //		utils.c

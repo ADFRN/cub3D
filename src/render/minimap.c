@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 11:50:25 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/19 10:41:50 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 17:03:53 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	fill_cell(t_game *game, int x, int y, int color)
 		j = -1;
 		while (++j < cell_size)
 		{
-			if (i == 0 || j == 0)
+			if ((i == 0 || j == 0) && game->map.map[y][x] != '0')
 				ft_mlx_pixel_put(
 					&game->data,
 					(x * cell_size + j), (y * cell_size + i), 0x00000000);
@@ -46,7 +46,7 @@ static void	fill_minimap(t_game *game, int ground_color, int wall_color)
 	while (game->map.map[y])
 	{
 		x = 0;
-		while (game->map.map[y][x])
+		while (game->map.map[y][x] != '\n')
 		{
 			if (game->map.map[y][x] == '1')
 				fill_cell(game, x, y, wall_color);
@@ -54,6 +54,11 @@ static void	fill_minimap(t_game *game, int ground_color, int wall_color)
 				fill_cell(game, x, y, ground_color);
 			else
 				fill_cell(game, x, y, BLACK);
+			x++;
+		}
+		while (x < game->map.width)
+		{
+			fill_cell(game, x, y, BLACK);
 			x++;
 		}
 		y++;

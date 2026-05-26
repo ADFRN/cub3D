@@ -6,21 +6,19 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:19 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/26 16:27:12 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 16:49:01 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_game	game;
-	char	**map;
 
-	map = debug_map();
-	if (!map)
+	if (ac != 2)
 		return (EXIT_FAILURE);
-	game = t_game_new(map);
+	game = t_game_new(av[1]);
 	mlx_hook(game.win, 17, 0, (void *)clean_exit, &game);
 	mlx_hook(game.win, 6, (1L << 6), (void *)mouse_movement, &game);
 	mlx_hook(game.win, 2, (1L << 0), (void *)key_press, &game);
