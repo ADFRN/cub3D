@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:30:29 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/26 11:49:04 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 12:14:44 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ char	**debug_map(void)
 	return (map);
 }
 
-void	debug_print_t_door(t_door *doors, int nb_doors)
+void	debug_print_t_door(t_door *doors)
 {
 	int	i = -1;
-	while (++i < nb_doors)
+	while (++i < doors[0].nb_doors)
 	{
-		printf("State = %s\n", doors[i].state ? "open" : "close");
-		printf("map_x | map_y\n  %d   |   %d\n", doors[i].pos_x, doors[i].pos_y);
+		printf("State = %s\n", ft_strcmp(doors[i].state, OPEN) ? "open" : (ft_strcmp(doors[i].state, CLOSE) ? "close" : "UNDEFINED"));
+		printf("map_x | map_y\n  %d   |   %d\n", doors[i].map_x, doors[i].map_y);
 	}
 }

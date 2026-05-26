@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/26 11:46:55 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 12:23:35 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,21 @@
 # define NORTH_SPAWN	'N'
 # define SOUTH_SPAWN	'S'
 # define FLOOR			'0'
-# define WALL			'1'
 # define DOOR			'D'
+# define WALL			'1'
 # define EXIT			'E'
+
+//	DOORS
+# define OPEN			"open"
+# define CLOSE			"close"
+# define UNDEFINED		"undefined"
 
 //	KEYS
 # define W_KEY			119
 # define A_KEY			97
 # define S_KEY			115
 # define D_KEY			100
+# define E_KEY			101
 # define SHIFT_KEY		65505
 # define UP_KEY			65362
 # define LEFT_KEY		65361
@@ -88,6 +94,7 @@ typedef struct s_keys
 	bool	s;
 	bool	a;
 	bool	d;
+	bool	e;
 	bool	left;
 	bool	right;
 	bool	shift;
@@ -130,9 +137,10 @@ typedef struct s_data
 
 typedef struct s_door
 {
-	int		pos_x;
-	int		pos_y;
-	bool	state;
+	char	*state;
+	int		nb_doors;
+	int		map_x;
+	int		map_y;
 }	t_door;
 
 typedef struct s_map
@@ -141,7 +149,6 @@ typedef struct s_map
 	int		width;
 	int		height;
 	t_door	*doors;
-	int		nb_doors;
 }	t_map;
 
 typedef struct s_ray
@@ -183,7 +190,7 @@ typedef struct s_game
 
 //	!!! DEBUG !!!
 char		**debug_map(void);
-void		debug_print_t_door(t_door *doors, int nb_doors);
+void		debug_print_t_door(t_door *doors);
 
 //	player.c
 //		camera.c
@@ -216,8 +223,10 @@ int			render_next_frame(t_game *game);
 //		t_data.c
 t_data		t_data_new(void	*mlx_ptr);
 //		t_door.c
-t_door		t_door_new(bool state, int map_x, int map_y);
+t_door		t_door_new(char *state, int map_x, int map_y, int nb_doors);
 void		t_door_fill(t_game *game, t_map *map);
+t_door		t_door_get(t_door *doors, int map_x, int map_y);
+bool		is_open(t_door door);
 //		t_game.c
 t_game		t_game_new(char **map);
 //		t_keys.c

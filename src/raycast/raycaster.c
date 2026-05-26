@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 12:52:10 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/19 10:40:56 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 12:18:03 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ void	dda_loop(t_game *game, t_ray *ray)
 			ray->hit = true;
 			continue ;
 		}
-		if (game->map.map[ray->mapy][ray->mapx] == '1')
+		if (game->map.map[ray->mapy][ray->mapx] == WALL
+			|| is_open(t_door_get(game->map.doors, ray->mapx, ray->mapy)))
 			ray->hit = true;
 	}
 }

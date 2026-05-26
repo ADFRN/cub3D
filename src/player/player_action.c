@@ -12,6 +12,19 @@
 
 #include "cub3D.h"
 
+// TMP TMP TMP TMP TMP TMP
+static void	revert_door_states(t_door *doors)
+{
+	int	i;
+
+	i = -1;
+	while (++i < doors[0].nb_doors)
+		if (!ft_strcmp(doors[i].state, CLOSE))
+			doors[i].state = OPEN;
+		else if (!ft_strcmp(doors[i].state, OPEN))
+			doors[i].state = CLOSE;
+}
+
 int	key_press(int key, t_game *game)
 {
 	if (key == ESC_KEY)
@@ -24,6 +37,8 @@ int	key_press(int key, t_game *game)
 		game->keys.a = true;
 	else if (key == D_KEY)
 		game->keys.d = true;
+	else if (key == E_KEY)
+		revert_door_states(game->map.doors);
 	else if (key == LEFT_KEY)
 		game->keys.left = true;
 	else if (key == RIGHT_KEY)

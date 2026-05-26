@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:19 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/26 11:46:44 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 12:08:52 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 	if (!map)
 		return (EXIT_FAILURE);
 	game = t_game_new(map);
-	debug_print_t_door(game.map.doors, game.map.nb_doors);
+	debug_print_t_door(game.map.doors);
 	mlx_hook(game.win, 17, 0, (void *)clean_exit, &game);
 	mlx_hook(game.win, 6, (1L << 6), (void *)mouse_movement, &game);
 	mlx_hook(game.win, 2, (1L << 0), (void *)key_press, &game);

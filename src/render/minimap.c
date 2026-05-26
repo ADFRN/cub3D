@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 11:50:25 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/19 10:41:50 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/26 12:11:59 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ static void	fill_minimap(t_game *game, int ground_color, int wall_color)
 		x = 0;
 		while (game->map.map[y][x])
 		{
-			if (game->map.map[y][x] == '1')
+			if (game->map.map[y][x] == WALL)
 				fill_cell(game, x, y, wall_color);
-			else if (game->map.map[y][x] == '0')
+			else if (game->map.map[y][x] == FLOOR)
 				fill_cell(game, x, y, ground_color);
 			else
 				fill_cell(game, x, y, BLACK);
