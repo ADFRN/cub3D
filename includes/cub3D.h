@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/27 13:33:26 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/27 13:40:58 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef enum e_door_state
 	DOOR_OPEN,
 	DOOR_CLOSE,
 	DOOR_UNDEFINED
-} t_door_state;
+}	t_door_state;
 
 /********************************/
 /*			STRUCTURES			*/
@@ -158,7 +158,7 @@ typedef struct s_map
 	char			**map;
 	int				width;
 	int				height;
-	t_door	*		doors;
+	t_door			*doors;
 }	t_map;
 
 typedef struct s_ray
