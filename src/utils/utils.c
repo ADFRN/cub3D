@@ -16,14 +16,22 @@ int	clean_exit(t_game *game)
 {
 	if (game->data.img)
 		mlx_destroy_image(game->mlx, game->data.img);
+	if (game->no_tex.img)
+		mlx_destroy_image(game->mlx, game->no_tex.img);
+	if (game->so_tex.img)
+		mlx_destroy_image(game->mlx, game->so_tex.img);
+	if (game->ea_tex.img)
+		mlx_destroy_image(game->mlx, game->ea_tex.img);
+	if (game->we_tex.img)
+		mlx_destroy_image(game->mlx, game->we_tex.img);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
+	t_map_free(&game->map);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	t_map_free(&game->map);
 	printf("exit\n");
 	exit(EXIT_SUCCESS);
 	return (0);

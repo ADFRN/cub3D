@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/05/27 14:14:42 by afournie         ###   ########.fr       */
-=======
-/*   Updated: 2026/05/27 13:40:58 by ttiprez          ###   ########.fr       */
->>>>>>> door
+/*   Updated: 2026/05/27 14:46:32 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,7 +315,7 @@ t_game		t_game_new(char *map_path);
 //		t_keys.c
 t_keys		t_keys_new(void);
 //		t_map.c
-t_map		t_map_new(char *map_path);
+t_map		t_map_new(t_game *game, char *map_path);
 void		t_map_free(t_map *map);
 //		t_minimap.c
 t_minimap	t_minimap_new(t_map map, t_ray ray);

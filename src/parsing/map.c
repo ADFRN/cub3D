@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 11:21:31 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/26 11:52:23 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:47:07 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static bool	check_chars(char **map, int *player_count)
 			c = map[y][x];
 			if (is_player(c))
 				(*player_count)++;
-			else if (c != '0' && c != '1' && c != ' ' && c != '\t')
+			else if (c != FLOOR && c != WALL && c != DOOR
+				&& c != ' ' && c != '\t')
 				return (false);
 			x++;
 		}

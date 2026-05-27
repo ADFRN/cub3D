@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afournie <afournie@student.42.fr>          +#+  +:+       +#+         #
+#    By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2026/05/27 13:15:56 by afournie         ###   ########.fr        #
-=======
-#    Updated: 2026/05/26 11:30:34 by ttiprez          ###   ########.fr        #
->>>>>>> door
+#    Updated: 2026/05/27 14:46:25 by ttiprez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,10 +51,10 @@ SRCS          =	$(SRC_DIR)/main.c								\
 				$(SRC_DIR)/player/player_action.c				\
 				$(SRC_DIR)/player/player.c						\
 				$(SRC_DIR)/raycast/raycaster.c					\
-				$(SRC_DIR)/raycast/utils.c					\
+				$(SRC_DIR)/raycast/utils.c						\
 				$(SRC_DIR)/render/game.c						\
-				$(SRC_DIR)/render/minimap.c						\
 				$(SRC_DIR)/render/minimap_draw.c				\
+				$(SRC_DIR)/render/minimap.c						\
 				$(SRC_DIR)/structures/t_data.c					\
 				$(SRC_DIR)/structures/t_door.c					\
 				$(SRC_DIR)/structures/t_game.c					\

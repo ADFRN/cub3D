@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:46 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/27 14:32:23 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/27 14:40:31 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_map	t_map_init(void)
 	return (map);
 }
 
-t_map	t_map_new(char *map_path)
+t_map	t_map_new(t_game *game, char *map_path)
 {
 	t_map	map_data;
 
@@ -85,4 +85,6 @@ void	t_map_free(t_map *map)
 	free(map->so_txt);
 	free(map->no_txt);
 	free(map->we_txt);
+	if (map->doors)
+		free(map->doors);
 }
