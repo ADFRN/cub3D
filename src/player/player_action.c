@@ -12,17 +12,33 @@
 
 #include "cub3D.h"
 
-// TMP TMP TMP TMP TMP TMP
-static void	revert_door_states(t_door *doors)
-{
-	int	i;
+//// TMP TMP TMP TMP TMP TMP
+//static void	revert_door_states(t_door *doors)
+//{
+//	int	i;
 
-	i = -1;
-	while (++i < doors[0].nb_doors)
-		if (!ft_strcmp(doors[i].state, CLOSE))
-			doors[i].state = OPEN;
-		else if (!ft_strcmp(doors[i].state, OPEN))
-			doors[i].state = CLOSE;
+//	i = -1;
+//	while (++i < doors[0].nb_doors)
+//		if (!ft_strcmp(doors[i].state, CLOSE))
+//			doors[i].state = OPEN;
+//		else if (!ft_strcmp(doors[i].state, OPEN))
+//			doors[i].state = CLOSE;
+//}
+
+static void	use_door(t_game *game, t_door **doors, t_map *map)
+{
+	
+	int		player_posx;
+	int		player_posy;
+	int		target_x;
+	int		target_y;
+
+	player_posx = (int)(game->player.posx / (WIN_WIDTH / map->width));
+	player_posy = (int)(game->player.posy / (WIN_HEIGHT / map->height));
+	target_x = player_posx + (int)round(game->player.dirx);
+	target_y = player_posy + (int)round(game->player.diry);
+	if (map->map[target_y][target_x] == DOOR)
+		t_door_state_switch(t_door_get(*doors, target_x, target_y));
 }
 
 int	key_press(int key, t_game *game)
@@ -38,7 +54,7 @@ int	key_press(int key, t_game *game)
 	else if (key == D_KEY)
 		game->keys.d = true;
 	else if (key == E_KEY)
-		revert_door_states(game->map.doors);
+		use_door(game, &game->map.doors, &game->map);
 	else if (key == LEFT_KEY)
 		game->keys.left = true;
 	else if (key == RIGHT_KEY)

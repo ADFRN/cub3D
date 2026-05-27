@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:30:29 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/26 12:14:44 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/27 13:04:49 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**debug_map(void)
 	map[0] = "111111111111111111111111111111111111111111";
 	map[1] = "100000000000000000000000000000000000000001";
 	map[2] = "100000000000000000000000000000000000000001";
-	map[3] = "1000011D1111100000000000001111111111100001";
+	map[3] = "1000011D11D1100000000000001111111111100001";
 	map[4] = "100001000000100000000000001000000000100001";
 	map[5] = "100001000000100000000000001000000000100001";
 	map[6] = "100001000000111110111110001000000000100001";
@@ -52,7 +52,7 @@ void	debug_print_t_door(t_door *doors)
 	int	i = -1;
 	while (++i < doors[0].nb_doors)
 	{
-		printf("State = %s\n", ft_strcmp(doors[i].state, OPEN) ? "open" : (ft_strcmp(doors[i].state, CLOSE) ? "close" : "UNDEFINED"));
+		printf("State = %s\n", doors[i].state == DOOR_OPEN ? "open" : doors[i].state == DOOR_CLOSE ? "close" : "UNDEFINED");
 		printf("map_x | map_y\n  %d   |   %d\n", doors[i].map_x, doors[i].map_y);
 	}
 }

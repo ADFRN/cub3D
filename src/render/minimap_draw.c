@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:27:15 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/19 10:46:59 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/27 13:06:10 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	draw_raycast(t_game *game)
 	{
 		t_ray_update(game, &ray, x);
 		init_step(&ray);
-		dda_loop(game, &ray);
+		dda_loop(&game->map, &ray);
 		draw_ray(game, &game->player, x, get_wall_dist(&ray) * cell_size);
 		x++;
 	}

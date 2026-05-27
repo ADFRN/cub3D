@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 12:52:10 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/26 12:18:03 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/27 13:34:08 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	raycast(t_game *game)
 	{
 		t_ray_update(game, &game->ray, x);
 		init_step(&game->ray);
-		dda_loop(game, &game->ray);
+		dda_loop(&game->map, &game->ray);
 		draw_column(game, &game->ray, x);
 		x++;
 	}
@@ -79,31 +79,28 @@ void	init_step(t_ray *ray)
 	}
 }
 
-void	dda_loop(t_game *game, t_ray *ray)
+void	dda_loop(t_map *map, t_ray *r)
 {
-	while (!ray->hit)
+	while (!r->hit)
 	{
-		if (ray->side_dist_x < ray->side_dist_y)
+		if (r->side_dist_x < r->side_dist_y)
 		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->mapx += ray->stepx;
-			ray->side = 0;
+			r->side_dist_x += r->delta_dist_x;
+			free((r->mapx += r->stepx, r->side = 0, NULL));
 		}
 		else
 		{
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->mapy += ray->stepy;
-			ray->side = 1;
+			r->side_dist_y += r->delta_dist_y;
+			free((r->mapy += r->stepy, r->side = 1, NULL));
 		}
-		if (ray->mapx < 0 || ray->mapy < 0
-			|| ray->mapx >= game->map.width
-			|| ray->mapy >= game->map.height)
+		if (r->mapx < 0 || r->mapy < 0 || r->mapx >= map->width
+			|| r->mapy >= map->height)
 		{
-			ray->hit = true;
+			r->hit = true;
 			continue ;
 		}
-		if (game->map.map[ray->mapy][ray->mapx] == WALL
-			|| is_open(t_door_get(game->map.doors, ray->mapx, ray->mapy)))
-			ray->hit = true;
+		if (map->map[r->mapy][r->mapx] == WALL
+			|| t_door_get(map->doors, r->mapx, r->mapy)->state == DOOR_CLOSE)
+			r->hit = true;
 	}
 }

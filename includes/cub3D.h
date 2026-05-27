@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/26 12:23:35 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/27 13:33:26 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,102 +86,112 @@
 # define ESC_KEY		0xFF1B
 
 /********************************/
+/*			ENUMERATIONS		*/
+/********************************/
+typedef enum e_door_state
+{
+	DOOR_OPEN,
+	DOOR_CLOSE,
+	DOOR_UNDEFINED
+} t_door_state;
+
+/********************************/
 /*			STRUCTURES			*/
 /********************************/
 typedef struct s_keys
 {
-	bool	w;
-	bool	s;
-	bool	a;
-	bool	d;
-	bool	e;
-	bool	left;
-	bool	right;
-	bool	shift;
+	bool			w;
+	bool			s;
+	bool			a;
+	bool			d;
+	bool			e;
+	bool			left;
+	bool			right;
+	bool			shift;
 }	t_keys;
 
 typedef struct s_player
 {
-	int		radius;
-	double	mov_speed;
-	double	rot_speed;
-	double	posx;
-	double	posy;
-	double	dirx;		// -1 N | 1 S | 0
-	double	diry;		// -1 W | 1 E | 0
-	double	planex;		// -0.66 W | 0.66 E | 0
-	double	planey;		// -0.66 N | 0.66 S | 0
-	double	raydir_x;
-	double	raydir_y;
-	double	camerax;	// Position camera
+	int				radius;
+	double			mov_speed;
+	double			rot_speed;
+	double			posx;
+	double			posy;
+	double			dirx;		// -1 N | 1 S | 0
+	double			diry;		// -1 W | 1 E | 0
+	double			planex;		// -0.66 W | 0.66 E | 0
+	double			planey;		// -0.66 N | 0.66 S | 0
+	double			raydir_x;
+	double			raydir_y;
+	double			camerax;	// Position camera
 }	t_player;
 
 typedef struct s_minimap
 {
-	int		width;
-	int		height;
-	int		cell_size;
-	int		p_radius;
-	double	p_posx;
-	double	p_posy;
+	int				width;
+	int				height;
+	int				cell_size;
+	int				p_radius;
+	double			p_posx;
+	double			p_posy;
 }	t_minimap;
 
 typedef struct s_data
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
 }	t_data;
 
 typedef struct s_door
 {
-	char	*state;
-	int		nb_doors;
-	int		map_x;
-	int		map_y;
+	t_door_state	state;
+	int				nb_doors;
+	int				map_x;
+	int				map_y;
 }	t_door;
 
 typedef struct s_map
 {
-	char	**map;
-	int		width;
-	int		height;
-	t_door	*doors;
+	char			**map;
+	int				width;
+	int				height;
+	t_door	*		doors;
 }	t_map;
 
 typedef struct s_ray
 {
-	double	camerax;
-	double	dirx;
-	double	diry;
-	double	posx;
-	double	posy;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	int		mapx;
-	int		mapy;
-	int		stepx;
-	int		stepy;
-	int		hit;
-	int		side;
+	double			camerax;
+	double			dirx;
+	double			diry;
+	double			posx;
+	double			posy;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	int				mapx;
+	int				mapy;
+	int				stepx;
+	int				stepy;
+	int				hit;
+	int				side;
 }	t_ray;
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	long		last_frame;
-	bool		mouse_warping;
-	t_map		map;
-	t_player	player;
-	t_ray		ray;
-	t_minimap	minimap;
-	t_keys		keys;
-	t_data		data;
+	void			*mlx;
+	void			*win;
+	long			last_frame;
+	bool			mouse_warping;
+	t_map			map;
+	t_player		player;
+	t_ray			ray;
+	t_minimap		minimap;
+	t_keys			keys;
+	t_data			data;
 }	t_game;
 
 /********************************/
@@ -208,7 +218,7 @@ void		update_player(t_game *game);
 //		raycaster.c
 void		raycast(t_game *game);
 void		init_step(t_ray *ray);
-void		dda_loop(t_game *game, t_ray *ray);
+void		dda_loop(t_map *map, t_ray *ray);
 
 //	render.c
 //		minimap_draw.c
@@ -223,10 +233,10 @@ int			render_next_frame(t_game *game);
 //		t_data.c
 t_data		t_data_new(void	*mlx_ptr);
 //		t_door.c
-t_door		t_door_new(char *state, int map_x, int map_y, int nb_doors);
+t_door		t_door_new(t_door_state state, int map_x, int map_y, int nb_doors);
 void		t_door_fill(t_game *game, t_map *map);
-t_door		t_door_get(t_door *doors, int map_x, int map_y);
-bool		is_open(t_door door);
+t_door		*t_door_get(t_door *doors, int map_x, int map_y);
+void		t_door_state_switch(t_door *door);
 //		t_game.c
 t_game		t_game_new(char **map);
 //		t_keys.c
