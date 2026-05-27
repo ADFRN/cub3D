@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 11:29:10 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/27 13:33:19 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/27 13:39:59 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	count_doors(char **map)
 
 t_door	t_door_new(t_door_state state, int map_x, int map_y, int nb_doors)
 {
-	t_door door;
+	t_door	door;
 
 	door.state = state;
 	door.nb_doors = nb_doors;

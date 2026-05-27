@@ -27,7 +27,6 @@
 
 static void	use_door(t_game *game, t_door **doors, t_map *map)
 {
-	
 	int		player_posx;
 	int		player_posy;
 	int		target_x;
