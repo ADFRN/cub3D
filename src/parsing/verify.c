@@ -6,12 +6,11 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 15:14:21 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/26 12:03:39 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/27 13:22:52 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#include "mlx.h"
 
 bool	is_valid_texture_path(t_game *game)
 {

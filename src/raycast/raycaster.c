@@ -3,46 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 12:52:10 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/19 10:40:56 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/27 13:14:36 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+static void	init_texture(t_draw *d, t_ray *ray, t_img *tex)
+{
+	if (ray->side == 0)
+		d->wall_x = ray->posy + get_perp_wall_dist(ray) * ray->diry;
+	else
+		d->wall_x = ray->posx + get_perp_wall_dist(ray) * ray->dirx;
+	d->wall_x -= floor(d->wall_x);
+	d->tex_x = (int)(d->wall_x * (double)tex->width);
+	if ((ray->side == 0 && ray->dirx > 0) || (ray->side == 1 && ray->diry < 0))
+		d->tex_x = tex->width - d->tex_x - 1;
+	d->step = (double)tex->height / (double)d->line_height;
+	d->tex_pos = (d->draw_start - WIN_HEIGHT / 2 + d->line_height / 2)
+		* d->step;
+}
+
 static double	draw_column(t_game *game, t_ray *ray, int x)
 {
+	t_draw	d;
+	t_img	*tex;
 	double	perp_wall_dist;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		y;
+	int		tex_y;
 
-	if (ray->side == 0)
-		perp_wall_dist = ray->side_dist_x - ray->delta_dist_x;
-	else
-		perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
-	line_height = (int)(WIN_HEIGHT / perp_wall_dist);
-	draw_start = -line_height / 2 + WIN_HEIGHT / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	draw_end = line_height / 2 + WIN_HEIGHT / 2;
-	if (draw_end >= WIN_HEIGHT)
-		draw_end = WIN_HEIGHT - 1;
-	y = draw_start;
-	while (y < draw_end)
+	perp_wall_dist = get_perp_wall_dist(ray);
+	init_draw(&d, perp_wall_dist);
+	tex = get_wall_texture(game, ray);
+	init_texture(&d, ray, tex);
+	d.y = d.draw_start;
+	while (d.y < d.draw_end)
 	{
-		ft_mlx_pixel_put(&game->data, x, y, GREY);
-		y++;
+		tex_y = (int)d.tex_pos;
+		if (tex_y < 0)
+			tex_y = 0;
+		if (tex_y >= tex->height)
+			tex_y = tex->height - 1;
+		d.tex_pos += d.step;
+		d.color = get_texture_pixel(tex, d.tex_x, tex_y);
+		ft_mlx_pixel_put(&game->data, x, d.y, d.color);
+		d.y++;
 	}
 	return (perp_wall_dist);
 }
 
 void	raycast(t_game *game)
 {
-	int		x;
+	int	x;
 
 	x = 0;
 	while (x < WIN_WIDTH)
@@ -95,8 +109,7 @@ void	dda_loop(t_game *game, t_ray *ray)
 			ray->mapy += ray->stepy;
 			ray->side = 1;
 		}
-		if (ray->mapx < 0 || ray->mapy < 0
-			|| ray->mapx >= game->map.width
+		if (ray->mapx < 0 || ray->mapy < 0 || ray->mapx >= game->map.width
 			|| ray->mapy >= game->map.height)
 		{
 			ray->hit = true;

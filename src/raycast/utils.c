@@ -1,0 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/27 13:06:56 by afournie          #+#    #+#             */
+/*   Updated: 2026/05/27 13:15:00 by afournie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3D.h"
+
+int	get_texture_pixel(t_img *tex, int x, int y)
+{
+	char	*dst;
+
+	dst = tex->addr + (y * tex->line_len + x * (tex->bpp / 8));
+	return (*(unsigned int *)dst);
+}
+
+t_img	*get_wall_texture(t_game *game, t_ray *ray)
+{
+	if (ray->side == 0)
+	{
+		if (ray->dirx < 0)
+			return (&game->we_tex);
+		return (&game->ea_tex);
+	}
+	if (ray->diry < 0)
+		return (&game->no_tex);
+	return (&game->so_tex);
+}
+
+double	get_perp_wall_dist(t_ray *ray)
+{
+	if (ray->side == 0)
+		return (ray->side_dist_x - ray->delta_dist_x);
+	return (ray->side_dist_y - ray->delta_dist_y);
+}
+
+void	init_draw(t_draw *d, double dist)
+{
+	d->line_height = (int)(WIN_HEIGHT / dist);
+	d->draw_start = -d->line_height / 2 + WIN_HEIGHT / 2;
+	if (d->draw_start < 0)
+		d->draw_start = 0;
+	d->draw_end = d->line_height / 2 + WIN_HEIGHT / 2;
+	if (d->draw_end >= WIN_HEIGHT)
+		d->draw_end = WIN_HEIGHT - 1;
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/26 17:11:34 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/27 13:15:41 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,12 +167,43 @@ typedef struct s_ray
 	int		side;
 }	t_ray;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_img;
+
+typedef struct s_draw
+{
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	double	wall_x;
+	int		tex_x;
+	double	step;
+	double	tex_pos;
+	int		y;
+	int		color;
+}	t_draw;
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
 	long		last_frame;
 	bool		mouse_warping;
+
+	t_img		no_tex;
+	t_img		so_tex;
+	t_img		we_tex;
+	t_img		ea_tex;
+	int			tile_size;
+
 	t_map		map;
 	t_player	player;
 	t_ray		ray;
@@ -184,6 +215,10 @@ typedef struct s_game
 /********************************/
 /*			PROTOTYPES			*/
 /********************************/
+
+//	graphics
+//		graphics.c
+void		init_textures(t_game *game);
 
 //	parsing
 //		colors.c
@@ -221,6 +256,11 @@ int			mouse_movement(int x, int y, t_game *game);
 void		update_player(t_game *game);
 
 //	raycast
+//		utils.c
+void		init_draw(t_draw *d, double dist);
+double		get_perp_wall_dist(t_ray *ray);
+t_img		*get_wall_texture(t_game *game, t_ray *ray);
+int			get_texture_pixel(t_img *tex, int x, int y);
 //		raycaster.c
 void		raycast(t_game *game);
 void		init_step(t_ray *ray);

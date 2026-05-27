@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+         #
+#    By: afournie <afournie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-#    Updated: 2026/05/26 16:47:27 by ttiprez          ###   ########.fr        #
+#    Updated: 2026/05/27 13:15:56 by afournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ MINILIBX      = $(MINILIBX_DIR)/libmlx_Linux.a
 OBJS          = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 SRCS          =	$(SRC_DIR)/main.c								\
-				$(SRC_DIR)/DEBUG.c								\
+				$(SRC_DIR)/graphics/graphics.c					\
 				$(SRC_DIR)/parsing/colors.c						\
 				$(SRC_DIR)/parsing/flood_fill.c					\
 				$(SRC_DIR)/parsing/map_utils.c					\
@@ -51,6 +51,7 @@ SRCS          =	$(SRC_DIR)/main.c								\
 				$(SRC_DIR)/player/player_action.c				\
 				$(SRC_DIR)/player/player.c						\
 				$(SRC_DIR)/raycast/raycaster.c					\
+				$(SRC_DIR)/raycast/utils.c					\
 				$(SRC_DIR)/render/game.c						\
 				$(SRC_DIR)/render/minimap.c						\
 				$(SRC_DIR)/render/minimap_draw.c				\
