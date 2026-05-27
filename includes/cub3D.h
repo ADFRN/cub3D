@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/27 13:15:41 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:14:42 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,7 +289,7 @@ void		t_map_free(t_map *map);
 t_minimap	t_minimap_new(t_map map, t_ray ray);
 void		t_minimap_update(t_minimap *minimap, t_ray ray);
 //		t_player.c
-t_player	t_player_new(void);
+t_player	t_player_new(t_game game);
 //		t_ray.c
 t_ray		t_ray_new(void);
 void		t_ray_update(t_game *game, t_ray *ray, int x);
