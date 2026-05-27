@@ -12,19 +12,6 @@
 
 #include "cub3D.h"
 
-//// TMP TMP TMP TMP TMP TMP
-//static void	revert_door_states(t_door *doors)
-//{
-//	int	i;
-
-//	i = -1;
-//	while (++i < doors[0].nb_doors)
-//		if (!ft_strcmp(doors[i].state, CLOSE))
-//			doors[i].state = OPEN;
-//		else if (!ft_strcmp(doors[i].state, OPEN))
-//			doors[i].state = CLOSE;
-//}
-
 static void	use_door(t_game *game, t_door **doors, t_map *map)
 {
 	int		player_posx;
