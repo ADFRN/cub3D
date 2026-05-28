@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:45 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/27 14:35:12 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/28 16:15:43 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_game	t_game_new(char *map_path)
 	game.mouse_warping = false;
 	game.map = t_map_new(&game, map_path);
 	if (!is_valid_texture_path(&game) || !is_valid_texture(&game))
-		exit(1);
+		validation_failed_exit(&game, &game.map);
 	game.player = t_player_new(game);
 	game.ray = t_ray_new();
 	game.minimap = t_minimap_new(game.map, game.ray);

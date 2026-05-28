@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:46 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/27 14:40:31 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/28 16:17:29 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static t_map	t_map_init(void)
 	map.so_txt = NULL;
 	map.no_txt = NULL;
 	map.we_txt = NULL;
+	map.doors = NULL;
 	map.height = 0;
 	map.width = 0;
 	map.map = NULL;
@@ -70,7 +71,7 @@ t_map	t_map_new(t_game *game, char *map_path)
 
 	map_data = t_map_init();
 	if (!get_map_info(&map_data, map_path))
-		exit(EXIT_FAILURE);
+		validation_failed_exit(game, &map_data);
 	map_data.height = map_height_len(map_data.map);
 	map_data.width = map_width_len(map_data.map);
 	map_data.doors = NULL;
@@ -80,11 +81,16 @@ t_map	t_map_new(t_game *game, char *map_path)
 
 void	t_map_free(t_map *map)
 {
-	free_map(map->map);
-	free(map->ea_txt);
-	free(map->so_txt);
-	free(map->no_txt);
-	free(map->we_txt);
+	if (map->map)
+		free_map(map->map);
+	if (map->ea_txt)
+		free(map->ea_txt);
+	if (map->so_txt)
+		free(map->so_txt);
+	if (map->no_txt)
+		free(map->no_txt);
+	if (map->we_txt)
+		free(map->we_txt);
 	if (map->doors)
 		free(map->doors);
 }

@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:09 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/18 12:57:39 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/28 15:36:06 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static int	parse_color(char *line)
 	b = ft_atoi(colors[2]);
 	free_split(colors);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		exit((ft_putendl_fd("Error\nInvalid color value", STDERR_FILENO), 1));
+		exit((ft_putendl_fd("Error\nInvalid color value", STDERR_FILENO),
+				EXIT_FAILURE));
 	return (create_trgb(0, r, g, b));
 }
 
