@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 11:24:58 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/26 11:28:31 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/28 16:08:23 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	free_map(char **map)
 	int	i;
 
 	i = 0;
+	if (!map)
+		return ;
 	while (map[i])
 	{
 		free(map[i]);

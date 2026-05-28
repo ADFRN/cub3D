@@ -6,36 +6,43 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 15:14:21 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/27 13:22:52 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/28 15:15:30 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-bool	is_valid_texture_path(t_game *game)
+static bool	verify_texture_path(char *path)
 {
 	int	fd;
 
-	fd = open(game->map.no_txt, O_RDONLY);
+	fd = open(path, O_RDONLY);
 	if (fd == -1)
+		return (false);
+	close(fd);
+	return (true);
+}
+
+bool	is_valid_texture_path(t_game *game)
+{
+	if (!verify_texture_path(game->map.no_txt))
 		return (ft_putendl_fd("Error\nNO file not found", STDERR_FILENO),
 			false);
-	close(fd);
-	fd = open(game->map.so_txt, O_RDONLY);
-	if (fd == -1)
+	if (!verify_texture_path(game->map.so_txt))
 		return (ft_putendl_fd("Error\nSO file not found", STDERR_FILENO),
 			false);
-	close(fd);
-	fd = open(game->map.ea_txt, O_RDONLY);
-	if (fd == -1)
+	if (!verify_texture_path(game->map.ea_txt))
 		return (ft_putendl_fd("Error\nEA file not found", STDERR_FILENO),
 			false);
-	close(fd);
-	fd = open(game->map.we_txt, O_RDONLY);
-	if (fd == -1)
+	if (!verify_texture_path(game->map.we_txt))
 		return (ft_putendl_fd("Error\nWE file not found", STDERR_FILENO),
 			false);
-	close(fd);
+	if (!verify_texture_path(DOOR_L_TEX))
+		return (ft_putendl_fd("Error\nDOOR_L file not found", STDERR_FILENO),
+			false);
+	if (!verify_texture_path(DOOR_R_TEX))
+		return (ft_putendl_fd("Error\nDOOR_R file not found", STDERR_FILENO),
+			false);
 	return (true);
 }
 
@@ -68,6 +75,12 @@ bool	is_valid_texture(t_game *game)
 	if (!texture_tester(game, game->map.we_txt))
 		return (ft_putendl_fd("Error\nWE XPM file not working", STDERR_FILENO),
 			false);
+	if (!texture_tester(game, DOOR_R_TEX))
+		return (ft_putendl_fd("Error\nDOOR XPM file not working",
+				STDERR_FILENO), false);
+	if (!texture_tester(game, DOOR_L_TEX))
+		return (ft_putendl_fd("Error\nDOOR XPM file not working",
+				STDERR_FILENO), false);
 	return (true);
 }
 

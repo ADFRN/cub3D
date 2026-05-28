@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:06 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/18 12:59:29 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/28 15:35:15 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*cpy_textures(char *path)
 	size = ft_strlen(path + i);
 	tmp = malloc((sizeof(char) * size) + 1);
 	if (!tmp)
-		exit(1);
+		exit(EXIT_FAILURE);
 	while (path[i] && path[i] != '\n')
 	{
 		tmp[y] = path[i];

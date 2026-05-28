@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/27 14:46:32 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/28 16:16:19 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@
 # define OPEN			"open"
 # define CLOSE			"close"
 # define UNDEFINED		"undefined"
+# define DOOR_L_TEX		"./map/door_l.xpm"
+# define DOOR_R_TEX		"./map/door_r.xpm"
 
 //	KEYS
 # define W_KEY			119
@@ -224,12 +226,14 @@ typedef struct s_game
 	void		*win;
 	long		last_frame;
 	bool		mouse_warping;
+	int			tile_size;
 
+	t_img		rdoor_tex;
+	t_img		ldoor_tex;
 	t_img		no_tex;
 	t_img		so_tex;
 	t_img		we_tex;
 	t_img		ea_tex;
-	int			tile_size;
 
 	t_map		map;
 	t_player	player;
@@ -330,6 +334,7 @@ void		t_ray_update(t_game *game, t_ray *ray, int x);
 //		mlx_utils.c
 void		ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 //		utils.c
+void		validation_failed_exit(t_game *game, t_map *map);
 int			clean_exit(t_game *game);
 long		get_time_us(void);
 
