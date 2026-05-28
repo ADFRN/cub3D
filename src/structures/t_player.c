@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_player.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:43 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/27 14:25:36 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/28 15:32:29 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ static void	get_player_pos(t_game game, t_player *player)
 		{
 			if (is_player(game.map.map[y][x]))
 			{
-				player->posx = (WIN_WIDTH * 1.0 / game.map.width) * x;
-				player->posy = (WIN_HEIGHT * 1.0 / game.map.height) * y;
+				player->posx = (WIN_WIDTH * 1.0 / game.map.width) * x
+					+ (WIN_WIDTH * 1.0 / game.map.width) / 2;
+				player->posy = (WIN_HEIGHT * 1.0 / game.map.height) * y
+					+ (WIN_HEIGHT * 1.0 / game.map.height) / 2;
 				get_player_dir(game.map.map[y][x], player);
 				return ;
 			}
