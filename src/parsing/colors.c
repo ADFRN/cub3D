@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:09 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/28 15:36:06 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/28 17:45:46 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,7 @@ bool	get_colors(t_map *map, char *line)
 			return (ft_putendl_fd("Error\nFloor color already set",
 					STDERR_FILENO), false);
 		map->floor_color = parse_color(line + 1);
-		if (!map->floor_color)
-			return (false);
-		else
-			return (map->has_floor = 1, true);
+		return (map->has_floor = 1, true);
 	}
 	else if (!ft_strncmp(line, "C", 1))
 	{
@@ -93,10 +90,7 @@ bool	get_colors(t_map *map, char *line)
 			return (ft_putendl_fd("Error\nCeiling color already set",
 					STDERR_FILENO), false);
 		map->ceiling_color = parse_color(line + 1);
-		if (!map->ceiling_color)
-			return (false);
-		else
-			return (map->has_ceiling = 1, true);
+		return (map->has_ceiling = 1, true);
 	}
 	else
 		return (ft_putendl_fd("Error\nColors missing", STDERR_FILENO), false);
