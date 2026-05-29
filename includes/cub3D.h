@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/29 12:44:42 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/29 13:43:59 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,20 +160,6 @@ typedef struct s_map
 	int				width;
 	int				height;
 	t_door			*doors;
-
-	char			*no_txt;
-	char			*so_txt;
-	char			*we_txt;
-	char			*ea_txt;
-	int				floor_color;
-	int				ceiling_color;
-
-	int				has_no;
-	int				has_so;
-	int				has_we;
-	int				has_ea;
-	int				has_floor;
-	int				has_ceiling;
 }			t_map;
 
 typedef struct s_ray
@@ -219,27 +205,50 @@ typedef struct s_draw
 	int				color;
 }	t_draw;
 
+typedef struct s_tex_data
+{
+	t_img			tex;
+	char			*tex_path;
+	int				has_tex;
+}	t_tex_data;
+
+typedef	struct s_textures
+{
+	int				floor_color;
+	int				ceiling_color;
+	int				has_floor;
+	int				has_ceiling;
+
+	t_tex_data		rdoor;
+	t_tex_data		ldoor;
+	t_tex_data		no;
+	t_tex_data		so;
+	t_tex_data		we;
+	t_tex_data		ea;
+}	t_textures;
+
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	long		last_frame;
-	bool		mouse_warping;
-	int			tile_size;
+	void			*mlx;
+	void			*win;
+	long			last_frame;
+	bool			mouse_warping;
+	int				tile_size;
 
-	t_img		rdoor_tex;
-	t_img		ldoor_tex;
-	t_img		no_tex;
-	t_img		so_tex;
-	t_img		we_tex;
-	t_img		ea_tex;
+	t_img			rdoor_tex;
+	t_img			ldoor_tex;
+	t_img			no_tex;
+	t_img			so_tex;
+	t_img			we_tex;
+	t_img			ea_tex;
 
-	t_map		map;
-	t_player	player;
-	t_ray		ray;
-	t_minimap	minimap;
-	t_keys		keys;
-	t_data		data;
+	t_textures		tex;
+	t_map			map;
+	t_player		player;
+	t_ray			ray;
+	t_minimap		minimap;
+	t_keys			keys;
+	t_data			data;
 }	t_game;
 
 /********************************/
@@ -252,7 +261,7 @@ void		init_textures(t_game *game);
 
 //	parsing
 //		colors.c
-bool		get_colors(t_map *map, char *line);
+bool		get_colors(t_textures *tex, char *line);
 //		flood_fill.c
 bool		flood_fill(char **map, int y, int x);
 //		map_utils.c
@@ -265,13 +274,13 @@ bool		check_map(char **map);
 //		parsing_utils.c
 char		*expand_tabs(char *line);
 //		parsing.h
-bool		get_map_info(t_map *map, char *map_path);
+bool		get_map_info(t_game *game, t_map *map, char *map_path);
 //		textures.c
-bool		get_textures(t_map *map, char *line);
+bool		get_textures(t_textures *tex, char *line);
 //		verify.c
-bool		is_valid_texture_path(t_game *game);
+bool		is_valid_texture_path(t_textures *tex);
 bool		is_valid_texture(t_game *game);
-bool		verify_all_data(t_map *map);
+bool		verify_all_data(t_map *map, t_textures *tex);
 
 //	player
 //		camera.c
@@ -315,6 +324,9 @@ t_door		*t_door_get(t_door *doors, int map_x, int map_y);
 void		t_door_state_switch(t_door *door);
 //		t_game.c
 t_game		t_game_new(char *map_path);
+//		t_img.c
+t_img		t_img_new(void);
+void		t_img_free(void *mlx, t_img *img);
 //		t_keys.c
 t_keys		t_keys_new(void);
 //		t_map.c
@@ -328,6 +340,12 @@ t_player	t_player_new(t_game game);
 //		t_ray.c
 t_ray		t_ray_new(void);
 void		t_ray_update(t_game *game, t_ray *ray, int x);
+//		t_tex_data.c
+t_tex_data	t_tex_data_new(void);
+void		t_tex_data_free(void *mlx, t_tex_data *tex_data);
+//		t_textures.c
+t_textures	t_textures_new(void);
+void		t_textures_free(void *mlx, t_textures *tex);
 
 //	utils
 //		mlx_utils.c

@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:09 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/28 17:45:46 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/29 13:24:34 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,23 @@ static int	parse_color(char *line)
 	return (create_trgb(0, r, g, b));
 }
 
-bool	get_colors(t_map *map, char *line)
+bool	get_colors(t_textures *tex, char *line)
 {
 	if (!ft_strncmp(line, "F", 1))
 	{
-		if (map->has_floor)
+		if (tex->has_floor)
 			return (ft_putendl_fd("Error\nFloor color already set",
 					STDERR_FILENO), false);
-		map->floor_color = parse_color(line + 1);
-		return (map->has_floor = 1, true);
+		tex->floor_color = parse_color(line + 1);
+		return (tex->has_floor = 1, true);
 	}
 	else if (!ft_strncmp(line, "C", 1))
 	{
-		if (map->has_ceiling)
+		if (tex->has_ceiling)
 			return (ft_putendl_fd("Error\nCeiling color already set",
 					STDERR_FILENO), false);
-		map->ceiling_color = parse_color(line + 1);
-		return (map->has_ceiling = 1, true);
+		tex->ceiling_color = parse_color(line + 1);
+		return (tex->has_ceiling = 1, true);
 	}
-	else
-		return (ft_putendl_fd("Error\nColors missing", STDERR_FILENO), false);
+	return (ft_putendl_fd("Error\nColors missing", STDERR_FILENO), false);
 }

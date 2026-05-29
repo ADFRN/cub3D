@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:04 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/28 16:04:49 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/29 13:51:30 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static bool	is_map(char *line, t_map *map)
+static bool	is_map(char *line, t_textures *t)
 {
 	int	i;
 
@@ -23,18 +23,13 @@ static bool	is_map(char *line, t_map *map)
 		|| line[i] == 'F' || line[i] == 'C')
 		return (false);
 	else if (line[i] == '\n')
-	{
-		if (map->has_ceiling && map->has_ea && map->has_no && map->has_floor
-			&& map->has_so && map->has_we)
-			return (true);
-		else
-			return (false);
-	}
-	else
-		return (true);
+		return (t->has_ceiling && t->has_floor 
+			&& t->ea.has_tex && t->no.has_tex
+			&& t->so.has_tex && t->we.has_tex);
+	return (true);
 }
 
-static bool	stock_info(t_map *map, char *line)
+static bool	stock_info(t_textures *tex, char *line)
 {
 	int	i;
 
@@ -44,15 +39,14 @@ static bool	stock_info(t_map *map, char *line)
 	if (line[i] == '\n')
 		return (true);
 	if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
-		return (get_textures(map, line));
+		return (get_textures(tex, line));
 	else if (line[i] == 'F' || line[i] == 'C')
-		return (get_colors(map, line));
-	else if (line[i] != 'N' || line[i] != 'S' || line[i] != 'W'
-		|| line[i] != 'E' || line[i] != 'F' || line[i] != 'C')
+		return (get_colors(tex, line));
+	else if (line[i] != 'N' && line[i] != 'S' && line[i] != 'W'
+		&& line[i] != 'E' && line[i] != 'F' && line[i] != 'C')
 		return (ft_putendl_fd("Error\nInvalid character", STDERR_FILENO),
 			false);
-	else
-		return (true);
+	return (true);
 }
 
 static char	**expand_map(char **old_map, int old_size, char *new_line)
@@ -75,14 +69,15 @@ static char	**expand_map(char **old_map, int old_size, char *new_line)
 	return (new_map);
 }
 
-static bool	info_while(t_map *map, char *line, int *size)
+static bool	info_while(t_game *g, t_map *map, char *line, int *size)
 {
-	if (!is_map(line, map))
-		return (stock_info(map, line));
+	if (!is_map(line, &g->tex))
+		return (stock_info(&g->tex, line));
 	else
 	{
-		if (!map->has_ceiling || !map->has_floor || !map->has_ea || !map->has_no
-			|| !map->has_so || !map->has_we)
+		if (!g->tex.has_ceiling || !g->tex.has_floor 
+			|| !g->tex.ea.has_tex || !g->tex.no.has_tex
+			|| !g->tex.so.has_tex || !g->tex.we.has_tex)
 			return (ft_putendl_fd("Error\nMap before colors and textures",
 					STDERR_FILENO), false);
 		if (*size == 0 && line[0] == '\n')
@@ -95,7 +90,7 @@ static bool	info_while(t_map *map, char *line, int *size)
 	return (true);
 }
 
-bool	get_map_info(t_map *map, char *map_path)
+bool	get_map_info(t_game *game, t_map *map, char *map_path)
 {
 	int		fd;
 	char	*line;
@@ -108,14 +103,14 @@ bool	get_map_info(t_map *map, char *map_path)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!info_while(map, line, &size))
+		if (!info_while(game, map, line, &size))
 			return (false);
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
 	close(fd);
-	if (!verify_all_data(map))
+	if (!verify_all_data(map, &game->tex))
 		return (false);
 	return (true);
 }

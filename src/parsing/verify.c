@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 15:14:21 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/28 15:15:30 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/29 13:33:24 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ static bool	verify_texture_path(char *path)
 	return (true);
 }
 
-bool	is_valid_texture_path(t_game *game)
+bool	is_valid_texture_path(t_textures *tex)
 {
-	if (!verify_texture_path(game->map.no_txt))
+	if (!verify_texture_path(tex->no.tex_path))
 		return (ft_putendl_fd("Error\nNO file not found", STDERR_FILENO),
 			false);
-	if (!verify_texture_path(game->map.so_txt))
+	if (!verify_texture_path(tex->so.tex_path))
 		return (ft_putendl_fd("Error\nSO file not found", STDERR_FILENO),
 			false);
-	if (!verify_texture_path(game->map.ea_txt))
+	if (!verify_texture_path(tex->ea.tex_path))
 		return (ft_putendl_fd("Error\nEA file not found", STDERR_FILENO),
 			false);
-	if (!verify_texture_path(game->map.we_txt))
+	if (!verify_texture_path(tex->we.tex_path))
 		return (ft_putendl_fd("Error\nWE file not found", STDERR_FILENO),
 			false);
 	if (!verify_texture_path(DOOR_L_TEX))
@@ -61,18 +61,18 @@ static bool	texture_tester(t_game *game, char *path)
 
 bool	is_valid_texture(t_game *game)
 {
-	if (!is_valid_texture_path(game))
+	if (!is_valid_texture_path(&game->tex))
 		return (false);
-	if (!texture_tester(game, game->map.no_txt))
+	if (!texture_tester(game, game->tex.no.tex_path))
 		return (ft_putendl_fd("Error\nNO XPM file not working", STDERR_FILENO),
 			false);
-	if (!texture_tester(game, game->map.so_txt))
+	if (!texture_tester(game, game->tex.so.tex_path))
 		return (ft_putendl_fd("Error\nSO XPM file not working", STDERR_FILENO),
 			false);
-	if (!texture_tester(game, game->map.ea_txt))
+	if (!texture_tester(game, game->tex.ea.tex_path))
 		return (ft_putendl_fd("Error\nEA XPM file not working", STDERR_FILENO),
 			false);
-	if (!texture_tester(game, game->map.we_txt))
+	if (!texture_tester(game, game->tex.we.tex_path))
 		return (ft_putendl_fd("Error\nWE XPM file not working", STDERR_FILENO),
 			false);
 	if (!texture_tester(game, DOOR_R_TEX))
@@ -84,11 +84,12 @@ bool	is_valid_texture(t_game *game)
 	return (true);
 }
 
-bool	verify_all_data(t_map *map)
+bool	verify_all_data(t_map *map, t_textures *tex)
 {
-	if (!map->has_ceiling || !map->has_floor)
+	if (!tex->has_ceiling || !tex->has_floor)
 		return (ft_putendl_fd("Error\nMissing colors", STDERR_FILENO), false);
-	if (!map->has_no || !map->has_ea || !map->has_so || !map->has_we)
+	if (!tex->no.has_tex || !tex->no.has_tex 
+		|| !tex->so.has_tex || !tex->we.has_tex)
 		return (ft_putendl_fd("Error\nMissing textures", STDERR_FILENO), false);
 	if (!check_map(map->map))
 		return (ft_putendl_fd("Error\nMap problem", STDERR_FILENO), false);

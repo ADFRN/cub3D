@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:06 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/28 15:35:15 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/29 13:31:54 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,64 +37,59 @@ static char	*cpy_textures(char *path)
 	return (tmp);
 }
 
-static bool	textures_ns(t_map *map, char *line)
+static bool	textures_ns(t_textures *t, char *line)
 {
 	if (!ft_strncmp(line, "NO", 2))
 	{
-		if (map->has_no)
+		if (t->no.has_tex)
 			return (ft_putendl_fd("Error\nNO textures already set",
 					STDERR_FILENO), false);
-		map->no_txt = cpy_textures(line);
-		if (!map->no_txt)
+		t->no.tex_path = cpy_textures(line);
+		if (!t->no.tex_path)
 			return (false);
-		else
-			return (map->has_no = 1, true);
+		return (t->no.has_tex = true, true);
 	}
 	else
 	{
-		if (map->has_so)
+		if (t->so.has_tex)
 			return (ft_putendl_fd("Error\nSO textures already set",
 					STDERR_FILENO), false);
-		map->so_txt = cpy_textures(line);
-		if (!map->so_txt)
+		t->so.tex_path = cpy_textures(line);
+		if (!t->so.tex_path)
 			return (false);
-		else
-			return (map->has_so = 1, true);
+		return (t->so.has_tex = true, true);
 	}
 }
 
-static bool	textures_we(t_map *map, char *line)
+static bool	textures_we(t_textures *t, char *line)
 {
 	if (!ft_strncmp(line, "WE", 2))
 	{
-		if (map->has_we)
+		if (t->we.has_tex)
 			return (ft_putendl_fd("Error\nWE textures already set",
 					STDERR_FILENO), false);
-		map->we_txt = cpy_textures(line);
-		if (!map->we_txt)
+		t->we.tex_path = cpy_textures(line);
+		if (!t->we.tex_path)
 			return (false);
-		else
-			return (map->has_we = 1, true);
+		return (t->we.has_tex = true, true);
 	}
 	else
 	{
-		if (map->has_ea)
+		if (t->ea.has_tex)
 			return (ft_putendl_fd("Error\nEA textures already set",
 					STDERR_FILENO), false);
-		map->ea_txt = cpy_textures(line);
-		if (!map->ea_txt)
+		t->ea.tex_path = cpy_textures(line);
+		if (!t->ea.tex_path)
 			return (false);
-		else
-			return (map->has_ea = 1, true);
+		return (t->ea.has_tex = true, true);
 	}
 }
 
-bool	get_textures(t_map *map, char *line)
+bool	get_textures(t_textures *tex, char *line)
 {
 	if (!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2))
-		return (textures_ns(map, line));
+		return (textures_ns(tex, line));
 	else if (!ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
-		return (textures_we(map, line));
-	else
-		return (ft_putendl_fd("Error\nCheck textures", STDERR_FILENO), false);
+		return (textures_we(tex, line));
+	return (ft_putendl_fd("Error\nCheck textures", STDERR_FILENO), false);
 }

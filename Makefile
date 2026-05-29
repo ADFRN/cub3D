@@ -6,7 +6,7 @@
 #    By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-#    Updated: 2026/05/27 14:46:25 by ttiprez          ###   ########.fr        #
+#    Updated: 2026/05/29 13:36:25 by ttiprez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,11 +58,14 @@ SRCS          =	$(SRC_DIR)/main.c								\
 				$(SRC_DIR)/structures/t_data.c					\
 				$(SRC_DIR)/structures/t_door.c					\
 				$(SRC_DIR)/structures/t_game.c					\
+				$(SRC_DIR)/structures/t_img.c					\
 				$(SRC_DIR)/structures/t_keys.c					\
 				$(SRC_DIR)/structures/t_map.c					\
 				$(SRC_DIR)/structures/t_minimap.c				\
 				$(SRC_DIR)/structures/t_player.c				\
 				$(SRC_DIR)/structures/t_ray.c					\
+				$(SRC_DIR)/structures/t_tex_data.c				\
+				$(SRC_DIR)/structures/t_textures.c				\
 				$(SRC_DIR)/utils/mlx_utils.c					\
 				$(SRC_DIR)/utils/utils.c						\
 
