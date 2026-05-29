@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:52:47 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/26 12:18:56 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/29 12:44:47 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_keys	t_keys_new(void)
 	keys.a = false;
 	keys.s = false;
 	keys.d = false;
-	keys.e = false;
 	keys.left = false;
 	keys.right = false;
 	keys.shift = false;
