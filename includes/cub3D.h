@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/29 13:43:59 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/29 13:57:53 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,13 +234,6 @@ typedef struct s_game
 	long			last_frame;
 	bool			mouse_warping;
 	int				tile_size;
-
-	t_img			rdoor_tex;
-	t_img			ldoor_tex;
-	t_img			no_tex;
-	t_img			so_tex;
-	t_img			we_tex;
-	t_img			ea_tex;
 
 	t_textures		tex;
 	t_map			map;

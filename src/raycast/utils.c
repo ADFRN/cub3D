@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 13:06:56 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/28 14:59:14 by afournie         ###   ########.fr       */
+/*   Updated: 2026/05/29 13:59:56 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ t_img	*get_wall_texture(t_game *game, t_ray *ray)
 	if (ray->side == 0)
 	{
 		if (ray->dirx < 0)
-			return (&game->we_tex);
-		return (&game->ea_tex);
+			return (&game->tex.we.tex);
+		return (&game->tex.ea.tex);
 	}
 	if (game->map.map[ray->mapy][ray->mapx] == DOOR)
 	{
 		if (ray->diry < 0)
-			return (&game->ldoor_tex);
+			return (&game->tex.ldoor.tex);
 		else
-			return (&game->rdoor_tex);
+			return (&game->tex.rdoor.tex);
 	}
 	if (ray->diry < 0)
-		return (&game->no_tex);
-	return (&game->so_tex);
+		return (&game->tex.no.tex);
+	return (&game->tex.so.tex);
 }
 
 double	get_perp_wall_dist(t_ray *ray)

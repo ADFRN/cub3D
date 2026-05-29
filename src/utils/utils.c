@@ -28,12 +28,12 @@ void	validation_failed_exit(t_game *game, t_map *map)
 
 int	clean_exit(t_game *game)
 {
+	t_textures_free(game->mlx, &game->tex);
+	t_map_free(&game->map);
 	if (game->data.img)
 		mlx_destroy_image(game->mlx, game->data.img);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
-	t_map_free(&game->map);
-	t_textures_free(game->mlx, &game->tex);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
