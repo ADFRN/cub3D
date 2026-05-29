@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:27:17 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/29 13:33:49 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/29 18:36:09 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	render_next_frame(t_game *game)
 	calculate_rot_mov_speed(game);
 	update_player(game);
 	sky_and_ground(game, game->tex.floor_color, game->tex.ceiling_color);
+	floor_casting(game);
 	raycast(game);
 	minimap(game, WHITE, SKY_BLUE, RED);
 	mlx_put_image_to_window(game->mlx, game->win, game->data.img, 0, 0);

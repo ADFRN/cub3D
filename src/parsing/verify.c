@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 15:14:21 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/29 13:33:24 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/29 17:31:47 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ bool	is_valid_texture_path(t_textures *tex)
 	if (!verify_texture_path(tex->we.tex_path))
 		return (ft_putendl_fd("Error\nWE file not found", STDERR_FILENO),
 			false);
-	if (!verify_texture_path(DOOR_L_TEX))
+	if (!verify_texture_path(LDOOR_TEX))
 		return (ft_putendl_fd("Error\nDOOR_L file not found", STDERR_FILENO),
 			false);
-	if (!verify_texture_path(DOOR_R_TEX))
+	if (!verify_texture_path(RDOOR_TEX))
 		return (ft_putendl_fd("Error\nDOOR_R file not found", STDERR_FILENO),
 			false);
 	return (true);
@@ -75,10 +75,10 @@ bool	is_valid_texture(t_game *game)
 	if (!texture_tester(game, game->tex.we.tex_path))
 		return (ft_putendl_fd("Error\nWE XPM file not working", STDERR_FILENO),
 			false);
-	if (!texture_tester(game, DOOR_R_TEX))
+	if (!texture_tester(game, RDOOR_TEX))
 		return (ft_putendl_fd("Error\nDOOR XPM file not working",
 				STDERR_FILENO), false);
-	if (!texture_tester(game, DOOR_L_TEX))
+	if (!texture_tester(game, LDOOR_TEX))
 		return (ft_putendl_fd("Error\nDOOR XPM file not working",
 				STDERR_FILENO), false);
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 12:52:10 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/27 14:34:20 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/29 17:47:22 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static double	draw_column(t_game *game, t_ray *ray, int x)
 	int		tex_y;
 
 	perp_wall_dist = get_perp_wall_dist(ray);
-	init_draw(&d, perp_wall_dist);
+	t_draw_init(&d, perp_wall_dist);
 	tex = get_wall_texture(game, ray);
 	init_texture(&d, ray, tex);
 	d.y = d.draw_start;

@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 13:06:56 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/29 13:59:56 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/29 17:46:22 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,4 @@ double	get_perp_wall_dist(t_ray *ray)
 	if (ray->side == 0)
 		return (ray->side_dist_x - ray->delta_dist_x);
 	return (ray->side_dist_y - ray->delta_dist_y);
-}
-
-void	init_draw(t_draw *d, double dist)
-{
-	d->line_height = (int)(WIN_HEIGHT / dist);
-	d->draw_start = -d->line_height / 2 + WIN_HEIGHT / 2;
-	if (d->draw_start < 0)
-		d->draw_start = 0;
-	d->draw_end = d->line_height / 2 + WIN_HEIGHT / 2;
-	if (d->draw_end >= WIN_HEIGHT)
-		d->draw_end = WIN_HEIGHT - 1;
 }

@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/29 13:57:53 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/05/29 18:35:30 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,12 @@
 # define OPEN			"open"
 # define CLOSE			"close"
 # define UNDEFINED		"undefined"
-# define DOOR_L_TEX		"./map/door_l.xpm"
-# define DOOR_R_TEX		"./map/door_r.xpm"
+# define LDOOR_TEX		"./map/door_l.xpm"
+# define RDOOR_TEX		"./map/door_r.xpm"
+
+// FLOOR / CEIL
+# define FLOOR_TEX		"./textures/colorstone.xpm"
+# define CEILING_TEX	"./textures/mossy.xpm"
 
 //	KEYS
 # define W_KEY			119
@@ -214,10 +218,10 @@ typedef struct s_tex_data
 
 typedef	struct s_textures
 {
-	int				floor_color;
 	int				ceiling_color;
-	int				has_floor;
+	int				floor_color;
 	int				has_ceiling;
+	int				has_floor;
 
 	t_tex_data		rdoor;
 	t_tex_data		ldoor;
@@ -225,6 +229,8 @@ typedef	struct s_textures
 	t_tex_data		so;
 	t_tex_data		we;
 	t_tex_data		ea;
+	t_tex_data		ceiling;
+	t_tex_data		floor;
 }	t_textures;
 
 typedef struct s_game
@@ -289,7 +295,6 @@ void		update_player(t_game *game);
 
 //	raycast
 //		utils.c
-void		init_draw(t_draw *d, double dist);
 double		get_perp_wall_dist(t_ray *ray);
 t_img		*get_wall_texture(t_game *game, t_ray *ray);
 int			get_texture_pixel(t_img *tex, int x, int y);
@@ -299,6 +304,8 @@ void		init_step(t_ray *ray);
 void		dda_loop(t_map *map, t_ray *ray);
 
 //	render
+//		floorcasting.c
+void		floor_casting(t_game *g);
 //		minimap_draw.c
 void		draw_player(t_game *game, int cx, int cy, int color);
 void		draw_raycast(t_game *game);
@@ -315,6 +322,8 @@ t_door		t_door_new(t_door_state state, int map_x, int map_y, int nb_doors);
 void		t_door_fill(t_game *game, t_map *map);
 t_door		*t_door_get(t_door *doors, int map_x, int map_y);
 void		t_door_state_switch(t_door *door);
+//		t_draw.c
+void		t_draw_init(t_draw *d, double dist);
 //		t_game.c
 t_game		t_game_new(char *map_path);
 //		t_img.c
