@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 12:55:17 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/29 13:55:30 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/01 17:37:56 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_img	t_img_new(void)
 {
 	t_img	img;
-	
+
 	img.img = NULL;
 	img.addr = NULL;
 	img.bpp = 0;

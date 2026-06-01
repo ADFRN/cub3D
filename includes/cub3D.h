@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/06/01 17:21:24 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/01 17:41:31 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ typedef struct s_tex_data
 	int				has_tex;
 }	t_tex_data;
 
-typedef	struct s_textures
+typedef struct s_textures
 {
 	int				ceiling_color;
 	int				floor_color;
@@ -305,7 +305,7 @@ void		dda_loop(t_map *map, t_ray *ray);
 
 //	render
 //		floorcasting.c
-void		floor_casting(t_game *g);
+//void		floor_casting(t_game *g);
 //		minimap_draw.c
 void		draw_player(t_game *game, int cx, int cy, int color);
 void		draw_raycast(t_game *game);

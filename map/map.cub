@@ -1,6 +1,6 @@
 
 F 66,66,66
-C 0,0,255
+C 0,0,0
 
 NO           ./map/texture1.xpm
 SO ./map/texture2.xpm

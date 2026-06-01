@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 15:14:21 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/29 17:31:47 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/01 17:37:32 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ bool	verify_all_data(t_map *map, t_textures *tex)
 {
 	if (!tex->has_ceiling || !tex->has_floor)
 		return (ft_putendl_fd("Error\nMissing colors", STDERR_FILENO), false);
-	if (!tex->no.has_tex || !tex->no.has_tex 
+	if (!tex->no.has_tex || !tex->no.has_tex
 		|| !tex->so.has_tex || !tex->we.has_tex)
 		return (ft_putendl_fd("Error\nMissing textures", STDERR_FILENO), false);
 	if (!check_map(map->map))

@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:28:31 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/06/01 17:36:38 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/01 17:40:52 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	move_player(t_game *game, double delta_x, double delta_y)
 		map_y = game->map.height - 1;
 	if (map_x >= game->map.width)
 		map_x = game->map.width - 1;
-	if (is_valid_case(t_door_get(game->map.doors, map_x, map_y), 
+	if (is_valid_case(t_door_get(game->map.doors, map_x, map_y),
 			game->map.map[map_y][map_x]))
 	{
 		game->player.posx += delta_x;

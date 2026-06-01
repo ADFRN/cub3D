@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 12:51:05 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/29 17:30:51 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/01 17:37:46 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_textures	t_textures_new(void)
 {
 	t_textures	tex;
-	
+
 	tex.ceiling_color = 0;
 	tex.floor_color = 0;
 	tex.has_ceiling = false;
@@ -34,7 +34,7 @@ t_textures	t_textures_new(void)
 void	t_textures_free(void *mlx, t_textures *tex)
 {
 	t_tex_data_free(mlx, &tex->ea);
-	t_tex_data_free(mlx, &tex->so); 
+	t_tex_data_free(mlx, &tex->so);
 	t_tex_data_free(mlx, &tex->no);
 	t_tex_data_free(mlx, &tex->we);
 	t_tex_data_free(mlx, &tex->rdoor);
