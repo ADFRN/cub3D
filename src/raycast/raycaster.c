@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 12:52:10 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/29 17:47:22 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/01 16:32:34 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ void	dda_loop(t_map *map, t_ray *r)
 			r->side_dist_y += r->delta_dist_y;
 			free((r->mapy += r->stepy, r->side = 1, NULL));
 		}
-		if (r->mapx < 0 || r->mapy < 0 || r->mapx >= map->width
-			|| r->mapy >= map->height)
+		if (r->mapx < 0 || r->mapy < 0
+			|| r->mapx >= map->width || r->mapy >= map->height)
 		{
 			r->hit = true;
 			continue ;

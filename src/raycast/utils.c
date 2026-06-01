@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 13:06:56 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/29 17:46:22 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/01 16:39:26 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ t_img	*get_wall_texture(t_game *game, t_ray *ray)
 			return (&game->tex.we.tex);
 		return (&game->tex.ea.tex);
 	}
-	if (game->map.map[ray->mapy][ray->mapx] == DOOR)
+	if ((ray->mapy > 0 && ray->mapy < game->map.height)
+		&& (ray->mapx > 0 && ray->mapx < game->map.width)
+		&& game->map.map[ray->mapy][ray->mapx] == DOOR)
 	{
 		if (ray->diry < 0)
 			return (&game->tex.ldoor.tex);
