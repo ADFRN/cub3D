@@ -51,3 +51,15 @@ long	get_time_us(void)
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000000 + tv.tv_usec);
 }
+
+bool	is_valid_case(t_door *door, char c)
+{
+	return (
+		c == FLOOR
+		|| c == WEST_SPAWN
+		|| c == NORTH_SPAWN
+		|| c == SOUTH_SPAWN
+		|| c == EST_SPAWN
+		|| (c == DOOR && door->state == DOOR_OPEN)
+	);
+}

@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:43 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/06/01 16:10:50 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/01 17:18:21 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,16 @@
 
 static void	get_player_dir(char c, t_player *player)
 {
+	player->dirx = 0;
+	player->diry = 0;
 	if (c == 'N')
-	{
-		player->dirx = 0;
 		player->diry = -1;
-		return ;
-	}
-	if (c == 'S')
-	{
-		player->dirx = 0;
+	else if (c == 'S')
 		player->diry = 1;
-		return ;
-	}
-	if (c == 'E')
-	{
+	else if (c == 'E')
 		player->dirx = 1;
-		player->diry = 0;
-		return ;
-	}
-	if (c == 'W')
-	{
+	else if (c == 'W')
 		player->dirx = -1;
-		player->diry = 0;
-		return ;
-	}
 }
 
 static void	get_player_pos(t_game game, t_player *player)

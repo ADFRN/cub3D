@@ -6,23 +6,11 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:28:31 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/06/01 16:54:57 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/01 17:21:39 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-static bool	is_valid_case(t_door *door, char c)
-{
-	return (
-		c == FLOOR
-		|| c == WEST_SPAWN
-		|| c == NORTH_SPAWN
-		|| c == SOUTH_SPAWN
-		|| c == EST_SPAWN
-		|| (c == DOOR && door->state == DOOR_OPEN)
-	);
-}
 
 static void	move_player(t_game *game, double delta_x, double delta_y)
 {

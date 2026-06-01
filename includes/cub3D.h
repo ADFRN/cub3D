@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/06/01 16:12:44 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/01 17:21:24 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -356,5 +356,6 @@ void		ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		validation_failed_exit(t_game *game, t_map *map);
 int			clean_exit(t_game *game);
 long		get_time_us(void);
+bool		is_valid_case(t_door *door, char c);
 
 #endif

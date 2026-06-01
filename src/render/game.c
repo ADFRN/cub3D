@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:27:17 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/06/01 16:13:09 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/01 17:20:20 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,5 @@ int	render_next_frame(t_game *game)
 	raycast(game);
 	minimap(game, WHITE, SKY_BLUE, RED);
 	mlx_put_image_to_window(game->mlx, game->win, game->data.img, 0, 0);
-	return (0);
+	return (1);
 }
