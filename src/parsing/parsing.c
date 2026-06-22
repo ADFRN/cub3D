@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:04 by afournie          #+#    #+#             */
-/*   Updated: 2026/06/01 17:37:13 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/22 15:13:03 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static bool	stock_info(t_textures *tex, char *line)
 		return (get_colors(tex, line));
 	else if (line[i] != 'N' && line[i] != 'S' && line[i] != 'W'
 		&& line[i] != 'E' && line[i] != 'F' && line[i] != 'C')
-		return (ft_putendl_fd("Error\nInvalid character", STDERR_FILENO),
+		return (ft_putendl_fd("error: invalid character", STDERR_FILENO),
 			false);
 	return (true);
 }
@@ -78,8 +78,8 @@ static bool	info_while(t_game *g, t_map *map, char *line, int *size)
 		if (!g->tex.has_ceiling || !g->tex.has_floor
 			|| !g->tex.ea.has_tex || !g->tex.no.has_tex
 			|| !g->tex.so.has_tex || !g->tex.we.has_tex)
-			return (ft_putendl_fd("Error\nMap before colors and textures",
-					STDERR_FILENO), false);
+			return (ft_putendl_fd("error: cub file invalid", STDERR_FILENO),
+					false);
 		if (*size == 0 && line[0] == '\n')
 			return (true);
 		line = expand_tabs(line);
@@ -99,7 +99,7 @@ bool	get_map_info(t_game *game, t_map *map, char *map_path)
 	size = 0;
 	fd = open(map_path, O_RDONLY);
 	if (fd < 0)
-		return (false);
+		return (ft_putendl_fd("error: file not found", STDERR_FILENO), false);
 	line = get_next_line(fd);
 	while (line)
 	{

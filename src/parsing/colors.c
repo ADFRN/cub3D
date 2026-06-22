@@ -6,7 +6,7 @@
 /*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:09 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/29 13:24:34 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/22 15:26:07 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static int	parse_color(char *line)
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	colors = ft_split(line + i, ',');
+	check_split(colors);
 	if (!is_valid_number(colors[0]) || !is_valid_number(colors[1])
 		|| !is_valid_number(colors[2]) || colors[3] != NULL)
 		exit((free_split(colors), ft_putendl_fd("Error\nInvalid color format",

@@ -6,7 +6,7 @@
 #    By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/05 14:02:54 by afournie          #+#    #+#              #
-#    Updated: 2026/05/29 17:51:20 by ttiprez          ###   ########.fr        #
+#    Updated: 2026/06/22 15:18:11 by ttiprez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ OBJS          = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 SRCS          =	$(SRC_DIR)/main.c								\
 				$(SRC_DIR)/graphics/graphics.c					\
+				$(SRC_DIR)/parsing/colors_utils.c				\
 				$(SRC_DIR)/parsing/colors.c						\
 				$(SRC_DIR)/parsing/flood_fill.c					\
 				$(SRC_DIR)/parsing/map_utils.c					\
