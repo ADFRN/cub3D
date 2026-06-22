@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:19 by afournie          #+#    #+#             */
-/*   Updated: 2026/06/22 15:08:11 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/22 15:55:23 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (ft_putendl_fd("error: bad arguments", STDERR_FILENO),
-				EXIT_FAILURE);
+			EXIT_FAILURE);
 	if (ft_strcmp(&av[1][ft_strlen(av[1]) - 4], ".cub"))
 		return (ft_putendl_fd("error: bad extensions", STDERR_FILENO),
-				EXIT_FAILURE);
+			EXIT_FAILURE);
 	game = t_game_new(av[1]);
 	mlx_hook(game.win, 17, 0, (void *)clean_exit, &game);
 	mlx_hook(game.win, 6, (1L << 6), (void *)mouse_movement, &game);

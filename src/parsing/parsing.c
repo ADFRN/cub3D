@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:04 by afournie          #+#    #+#             */
-/*   Updated: 2026/06/22 15:13:03 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/22 15:50:57 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static bool	is_map(char *line, t_textures *t)
 		|| line[i] == 'F' || line[i] == 'C')
 		return (false);
 	else if (line[i] == '\n')
-		return (t->has_ceiling && t->has_floor
-			&& t->ea.has_tex && t->no.has_tex
+		return (t->has_ceiling && t->has_floor && t->ea.has_tex && t->no.has_tex
 			&& t->so.has_tex && t->we.has_tex);
 	return (true);
 }
@@ -75,11 +74,10 @@ static bool	info_while(t_game *g, t_map *map, char *line, int *size)
 		return (stock_info(&g->tex, line));
 	else
 	{
-		if (!g->tex.has_ceiling || !g->tex.has_floor
-			|| !g->tex.ea.has_tex || !g->tex.no.has_tex
-			|| !g->tex.so.has_tex || !g->tex.we.has_tex)
+		if (!g->tex.has_ceiling || !g->tex.has_floor || !g->tex.ea.has_tex
+			|| !g->tex.no.has_tex || !g->tex.so.has_tex || !g->tex.we.has_tex)
 			return (ft_putendl_fd("error: cub file invalid", STDERR_FILENO),
-					false);
+				false);
 		if (*size == 0 && line[0] == '\n')
 			return (true);
 		line = expand_tabs(line);
