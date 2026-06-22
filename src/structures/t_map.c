@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:46 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/06/22 14:57:39 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/22 16:37:44 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,28 @@ static t_map	t_map_init(void)
 
 t_map	t_map_new(t_game *game, char *map_path)
 {
+	int		i;
+	int		j;
 	t_map	map_data;
 
+	i = 0;
 	map_data = t_map_init();
 	if (!get_map_info(game, &map_data, map_path))
 		validation_failed_exit(game, &map_data);
 	map_data.height = map_height_len(map_data.map);
 	map_data.width = map_width_len(map_data.map);
 	map_data.doors = NULL;
+	while (map_data.map[i])
+	{
+		j = 0;
+		while (map_data.map[i][j])
+		{
+			if (map_data.map[i][j] == DOOR)
+				game->tex.has_door = true;
+			j++;
+		}
+		i++;
+	}
 	t_door_fill(game, &map_data);
 	return (map_data);
 }

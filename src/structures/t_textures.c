@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_textures.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 12:51:05 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/06/01 17:37:46 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/22 16:23:25 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_textures	t_textures_new(void)
 	tex.floor_color = 0;
 	tex.has_ceiling = false;
 	tex.has_floor = false;
+	tex.has_door = false;
 	tex.rdoor = t_tex_data_new();
 	tex.ldoor = t_tex_data_new();
 	tex.no = t_tex_data_new();
