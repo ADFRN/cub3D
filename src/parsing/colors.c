@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:09 by afournie          #+#    #+#             */
-/*   Updated: 2026/06/22 15:53:50 by afournie         ###   ########.fr       */
+/*   Updated: 2026/06/22 16:08:22 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ static int	parse_color(char *line)
 	check_split(colors);
 	if (!is_valid_number(colors[0]) || !is_valid_number(colors[1])
 		|| !is_valid_number(colors[2]) || colors[3] != NULL)
-		exit((free_split(colors), ft_putendl_fd("Error\nInvalid color format",
+		exit((free_split(colors), ft_putendl_fd("error: invalid color format",
 					STDERR_FILENO), 1));
 	r = ft_atoi(colors[0]);
 	g = ft_atoi(colors[1]);
 	b = ft_atoi(colors[2]);
 	free_split(colors);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		exit((ft_putendl_fd("Error\nInvalid color value", STDERR_FILENO),
+		exit((ft_putendl_fd("error: invalid color value", STDERR_FILENO),
 				EXIT_FAILURE));
 	return (create_trgb(0, r, g, b));
 }
@@ -80,7 +80,7 @@ bool	get_colors(t_textures *tex, char *line)
 	if (!ft_strncmp(line, "F", 1))
 	{
 		if (tex->has_floor)
-			return (ft_putendl_fd("Error\nFloor color already set",
+			return (ft_putendl_fd("error: floor color already set",
 					STDERR_FILENO), false);
 		tex->floor_color = parse_color(line + 1);
 		return (tex->has_floor = 1, true);
@@ -88,10 +88,10 @@ bool	get_colors(t_textures *tex, char *line)
 	else if (!ft_strncmp(line, "C", 1))
 	{
 		if (tex->has_ceiling)
-			return (ft_putendl_fd("Error\nCeiling color already set",
+			return (ft_putendl_fd("error: ceiling color already set",
 					STDERR_FILENO), false);
 		tex->ceiling_color = parse_color(line + 1);
 		return (tex->has_ceiling = 1, true);
 	}
-	return (ft_putendl_fd("Error\nColors missing", STDERR_FILENO), false);
+	return (ft_putendl_fd("error: colors missing", STDERR_FILENO), false);
 }

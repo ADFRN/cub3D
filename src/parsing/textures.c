@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:06 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/29 13:31:54 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/22 16:10:10 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static bool	textures_ns(t_textures *t, char *line)
 	if (!ft_strncmp(line, "NO", 2))
 	{
 		if (t->no.has_tex)
-			return (ft_putendl_fd("Error\nNO textures already set",
+			return (ft_putendl_fd("error: NO textures already set",
 					STDERR_FILENO), false);
 		t->no.tex_path = cpy_textures(line);
 		if (!t->no.tex_path)
@@ -52,7 +52,7 @@ static bool	textures_ns(t_textures *t, char *line)
 	else
 	{
 		if (t->so.has_tex)
-			return (ft_putendl_fd("Error\nSO textures already set",
+			return (ft_putendl_fd("error: SO textures already set",
 					STDERR_FILENO), false);
 		t->so.tex_path = cpy_textures(line);
 		if (!t->so.tex_path)
@@ -66,7 +66,7 @@ static bool	textures_we(t_textures *t, char *line)
 	if (!ft_strncmp(line, "WE", 2))
 	{
 		if (t->we.has_tex)
-			return (ft_putendl_fd("Error\nWE textures already set",
+			return (ft_putendl_fd("error: WE textures already set",
 					STDERR_FILENO), false);
 		t->we.tex_path = cpy_textures(line);
 		if (!t->we.tex_path)
@@ -76,7 +76,7 @@ static bool	textures_we(t_textures *t, char *line)
 	else
 	{
 		if (t->ea.has_tex)
-			return (ft_putendl_fd("Error\nEA textures already set",
+			return (ft_putendl_fd("error: EA textures already set",
 					STDERR_FILENO), false);
 		t->ea.tex_path = cpy_textures(line);
 		if (!t->ea.tex_path)
@@ -91,5 +91,6 @@ bool	get_textures(t_textures *tex, char *line)
 		return (textures_ns(tex, line));
 	else if (!ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
 		return (textures_we(tex, line));
-	return (ft_putendl_fd("Error\nCheck textures", STDERR_FILENO), false);
+	return (ft_putendl_fd("error: an error was encountered with the textures",
+			STDERR_FILENO), false);
 }

@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 11:21:31 by afournie          #+#    #+#             */
-/*   Updated: 2026/05/28 15:53:49 by afournie         ###   ########.fr       */
+/*   Updated: 2026/06/22 16:08:34 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static bool	check_chars(char **map, int *player_count)
 			c = map[y][x];
 			if (is_player(c))
 				(*player_count)++;
-			else if (c != FLOOR && c != WALL && c != DOOR
-				&& c != ' ' && c != '\t')
+			else if (c != FLOOR && c != WALL && c != DOOR && c != ' '
+				&& c != '\t')
 				return (false);
 			x++;
 		}
@@ -51,16 +51,20 @@ bool	check_map(char **map)
 
 	player_count = 0;
 	if (!check_chars(map, &player_count))
-		return (false);
+		return (ft_putendl_fd("error: invalid character in the map",
+				STDERR_FILENO), false);
 	if (player_count != 1)
-		return (false);
+		return (ft_putendl_fd("error: expect one player in the map",
+				STDERR_FILENO), false);
 	copy = copy_map(map);
 	if (!copy)
 		return (false);
 	if (!find_player(copy, &py, &px))
-		return (free_map(copy), false);
+		return (ft_putendl_fd("error: map problem", STDERR_FILENO),
+			free_map(copy), false);
 	if (!flood_fill(copy, py, px))
-		return (free_map(copy), false);
+		return (ft_putendl_fd("error: map problem", STDERR_FILENO),
+			free_map(copy), false);
 	free_map(copy);
 	return (true);
 }
