@@ -1,11 +1,11 @@
-F 255,0,0
-C 0,0,0
 
 NO           ./map/texture1.xpm
 SO ./map/texture2.xpm
 EA							./map/texture51.xpm
 WE ./map/texture52.xpm
 
+F 37,4,61
+C 26,160,249
 
 1111111111111111111111111111111111
 1000000000000000000000000000000111

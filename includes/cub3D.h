@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/06/22 16:23:02 by afournie         ###   ########.fr       */
+/*   Updated: 2026/06/23 15:21:44 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,7 +261,7 @@ void		init_textures(t_game *game);
 
 //	parsing
 //		colors_utils.c
-void		check_split(char **split);
+bool		check_split(char **split);
 //		colors.c
 bool		get_colors(t_textures *tex, char *line);
 //		flood_fill.c

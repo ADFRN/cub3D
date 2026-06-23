@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 19:21:45 by ttiprez           #+#    #+#             */
-/*   Updated: 2026/05/29 13:19:47 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/06/23 15:17:05 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ t_game	t_game_new(char *map_path)
 	t_game	game;
 
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	game.last_frame = 0;
 	game.mouse_warping = false;
 	game.tex = t_textures_new();
 	game.map = t_map_new(&game, map_path);
 	if (!is_valid_texture_path(&game.tex) || !is_valid_texture(&game))
 		validation_failed_exit(&game, &game.map);
+	game.win = mlx_new_window(game.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	game.player = t_player_new(game);
 	game.ray = t_ray_new();
 	game.minimap = t_minimap_new(game.map, game.ray);

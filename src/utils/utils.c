@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/10 18:18:51 by marvin            #+#    #+#             */
-/*   Updated: 2026/05/10 18:18:51 by marvin           ###   ########.fr       */
+/*   Created: 2026/06/23 15:00:20 by afournie          #+#    #+#             */
+/*   Updated: 2026/06/23 15:00:20 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	validation_failed_exit(t_game *game, t_map *map)
 {
 	t_textures_free(game->mlx, &game->tex);
 	t_map_free(map);
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
@@ -39,7 +37,6 @@ int	clean_exit(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	printf("exit\n");
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -54,12 +51,7 @@ long	get_time_us(void)
 
 bool	is_valid_case(t_door *door, char c)
 {
-	return (
-		c == FLOOR
-		|| c == WEST_SPAWN
-		|| c == NORTH_SPAWN
-		|| c == SOUTH_SPAWN
-		|| c == EST_SPAWN
-		|| (c == DOOR && door->state == DOOR_OPEN)
-	);
+	return (c == FLOOR || c == WEST_SPAWN || c == NORTH_SPAWN
+		|| c == SOUTH_SPAWN || c == EST_SPAWN || (c == DOOR
+			&& door->state == DOOR_OPEN));
 }

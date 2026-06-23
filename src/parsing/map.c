@@ -6,7 +6,7 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 11:21:31 by afournie          #+#    #+#             */
-/*   Updated: 2026/06/22 16:29:58 by afournie         ###   ########.fr       */
+/*   Updated: 2026/06/23 14:40:20 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,19 @@ bool	check_map(char **map)
 
 	player_count = 0;
 	if (!check_chars(map, &player_count))
-		return (ft_putendl_fd("error: invalid character in the map",
+		return (ft_putendl_fd("Error\ninvalid character in the map",
 				STDERR_FILENO), false);
 	if (player_count != 1)
-		return (ft_putendl_fd("error: expect one player in the map",
+		return (ft_putendl_fd("Error\nexpect one player in the map",
 				STDERR_FILENO), false);
 	copy = copy_map(map);
 	if (!copy)
 		return (false);
 	if (!find_player(copy, &py, &px))
-		return (ft_putendl_fd("error: map problem", STDERR_FILENO),
+		return (ft_putendl_fd("Error\nmap problem", STDERR_FILENO),
 			free_map(copy), false);
 	if (!flood_fill(copy, py, px))
-		return (ft_putendl_fd("error: map problem", STDERR_FILENO),
+		return (ft_putendl_fd("Error\nmap problem", STDERR_FILENO),
 			free_map(copy), false);
 	free_map(copy);
 	return (true);
