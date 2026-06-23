@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/06/23 15:21:44 by afournie         ###   ########.fr       */
+/*   Updated: 2026/06/23 15:59:25 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 //	PLAYER
 # define FOV			100
 # define ROT_SPEED		4.0
+# define M_ROT_SPEED	0.001
 # define MOV_SPEED		200.0
 # define SPEED_MULT		2
 
@@ -291,7 +292,6 @@ void		rotate_player(t_player *player, double angle);
 int			key_press(int key, t_game *game);
 int			key_release(int key, t_game *game);
 //		mouse_action.c
-int			mouse_click(int button, int x, int y, t_game *game);
 int			mouse_movement(int x, int y, t_game *game);
 //		player.c
 void		update_player(t_game *game);
