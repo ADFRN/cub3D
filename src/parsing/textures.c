@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:06 by afournie          #+#    #+#             */
-/*   Updated: 2026/06/23 14:40:20 by afournie         ###   ########.fr       */
+/*   Updated: 2026/07/01 14:33:46 by ttiprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	trim_texture(char **tex, char *set)
+{
+	char	*tmp;
+
+	if (!tex || !*tex)
+		return;
+	tmp = ft_strtrim(*tex, set);
+	free(*tex);
+	*tex = tmp;
+}
 
 static char	*cpy_textures(char *path)
 {
@@ -45,6 +56,7 @@ static bool	textures_ns(t_textures *t, char *line)
 			return (ft_putendl_fd("Error\nNO textures already set",
 					STDERR_FILENO), false);
 		t->no.tex_path = cpy_textures(line);
+		trim_texture(&t->no.tex_path, " \t\n");
 		if (!t->no.tex_path)
 			return (false);
 		return (t->no.has_tex = true, true);
@@ -55,6 +67,7 @@ static bool	textures_ns(t_textures *t, char *line)
 			return (ft_putendl_fd("Error\nSO textures already set",
 					STDERR_FILENO), false);
 		t->so.tex_path = cpy_textures(line);
+		trim_texture(&t->so.tex_path, " \t\n");
 		if (!t->so.tex_path)
 			return (false);
 		return (t->so.has_tex = true, true);
@@ -69,6 +82,7 @@ static bool	textures_we(t_textures *t, char *line)
 			return (ft_putendl_fd("Error\nWE textures already set",
 					STDERR_FILENO), false);
 		t->we.tex_path = cpy_textures(line);
+		trim_texture(&t->we.tex_path, " \t\n");
 		if (!t->we.tex_path)
 			return (false);
 		return (t->we.has_tex = true, true);
@@ -79,6 +93,7 @@ static bool	textures_we(t_textures *t, char *line)
 			return (ft_putendl_fd("Error\nEA textures already set",
 					STDERR_FILENO), false);
 		t->ea.tex_path = cpy_textures(line);
+		trim_texture(&t->ea.tex_path, " \t\n");
 		if (!t->ea.tex_path)
 			return (false);
 		return (t->ea.has_tex = true, true);
