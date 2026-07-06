@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 14:56:06 by afournie          #+#    #+#             */
-/*   Updated: 2026/07/01 14:33:46 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/07/06 12:47:30 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	trim_texture(char **tex, char *set)
 	char	*tmp;
 
 	if (!tex || !*tex)
-		return;
+		return ;
 	tmp = ft_strtrim(*tex, set);
 	free(*tex);
 	*tex = tmp;
