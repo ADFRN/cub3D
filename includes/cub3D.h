@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttiprez <ttiprez@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:04:52 by afournie          #+#    #+#             */
-/*   Updated: 2026/06/23 15:59:25 by ttiprez          ###   ########.fr       */
+/*   Updated: 2026/07/08 15:42:15 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@
 # define OPEN			"open"
 # define CLOSE			"close"
 # define UNDEFINED		"undefined"
-# define LDOOR_TEX		"./map/door_l.xpm"
-# define RDOOR_TEX		"./map/door_r.xpm"
+# define LDOOR_TEX		"./textures/door_l.xpm"
+# define RDOOR_TEX		"./textures/door_r.xpm"
 
 // FLOOR / CEIL
 # define FLOOR_TEX		"./textures/colorstone.xpm"

@@ -1,8 +1,8 @@
 
-NO           ./map/texture1.xpm
-SO ./map/texture2.xpm
-EA							./map/texture51.xpm
-WE ./map/texture52.xpm
+NO           ./textures/texture1.xpm
+SO ./textures/texture2.xpm
+EA							./textures/texture51.xpm
+WE ./textures/texture52.xpm
 
 F 37,4,61
 C 26,160,249
